@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".WorkActivity"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
@@ -53,6 +53,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MyPageActivity">
+
         </activity>
     </application>
 
