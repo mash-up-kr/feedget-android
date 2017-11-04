@@ -3,7 +3,6 @@ package kr.mashup.projectnoname.ui.main.tabs.creation;
 import android.content.Intent;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import kr.mashup.projectnoname.R;
 import kr.mashup.projectnoname.WorkActivity;
