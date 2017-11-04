@@ -1,5 +1,6 @@
 package kr.mashup.projectnoname.ui.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -23,6 +24,11 @@ public final class MainActivity extends BaseActivity<Contract.Presenter> impleme
 
     private void init() {
 
+    }
+
+    @Override
+    public Context getContext() {
+        return getBaseContext();
     }
 
 }
