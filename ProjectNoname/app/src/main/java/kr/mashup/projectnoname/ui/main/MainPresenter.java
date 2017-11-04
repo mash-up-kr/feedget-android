@@ -1,14 +1,17 @@
 package kr.mashup.projectnoname.ui.main;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Function;
 import com.annimon.stream.function.IntFunction;
 
 import kr.mashup.projectnoname.ui.main.tabs.creation.CreationFragment;
+import kr.mashup.projectnoname.ui.register.RegisterActivity;
 
 public class MainPresenter implements Contract.Presenter {
 
@@ -58,6 +61,15 @@ public class MainPresenter implements Contract.Presenter {
 
             }
         });
+    }
+
+    @Override
+    public void setWriteClickEvent(View view) {
+        view.setOnClickListener(__ -> {
+                    Intent intent = new Intent(view.getContext(), RegisterActivity.class);
+                    view.getContext().startActivity(intent);
+                }
+        );
     }
 
     private String[] getCategories() {

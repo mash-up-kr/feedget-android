@@ -29,6 +29,7 @@ public final class MainActivity extends BaseActivity<Contract.Presenter> impleme
 
     private void init() {
         presenter.initTabPager(binding.pager, binding.tab);
+        presenter.setWriteClickEvent(binding.write);
 
         setUpToolbar();
     }
