@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/feedback_stroke"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+
+    <TextView
+        android:id="@+id/ownerTextView"
+        android:text="익명"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/contentTextView"
+        android:text="솔직히 이건 가나다라마바사 아자차카. 카카!! 가나다라 마밥일이삼사 오육 굿굿"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>
