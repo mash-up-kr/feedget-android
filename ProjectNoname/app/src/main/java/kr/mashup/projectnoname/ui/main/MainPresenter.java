@@ -1,10 +1,11 @@
 package kr.mashup.projectnoname.ui.main;
 
-import kr.mashup.projectnoname.ui.base.BasePresenter;
+public class MainPresenter implements Contract.Presenter {
 
-public class MainPresenter extends BasePresenter<Contract.View> implements Contract.Presenter {
+    protected Contract.View view;
 
     public MainPresenter(Contract.View view) {
-        super(view);
+        this.view = view;
     }
+
 }
