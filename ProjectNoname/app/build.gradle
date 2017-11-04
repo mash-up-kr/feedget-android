@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
@@ -24,4 +27,22 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //retrofit
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    compile "com.squareup.okhttp3:okhttp:$okhttp_version"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rx_java_adater_version"
+
+    //rx
+    compile "io.reactivex.rxjava2:rxjava:$rx_java_version"
+    compile "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
+
+    //dagger
+    compile  "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    compile "com.google.dagger:dagger-android:$dagger_version"
+    compile "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 }
