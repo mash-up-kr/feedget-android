@@ -13,6 +13,7 @@ buildscript {
         lightstream_version = '1.1.9'
         databinding_version = '3.0.0'
         retrolambda_version = '3.2.2'
+        facebook_version = "[4,5)"
     }
 
     repositories {
