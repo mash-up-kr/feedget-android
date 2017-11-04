@@ -107,7 +107,8 @@ public class WorkActivity extends AppCompatActivity {
 
     }
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }
