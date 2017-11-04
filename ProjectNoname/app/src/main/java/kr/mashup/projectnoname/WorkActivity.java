@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ public class WorkActivity extends AppCompatActivity {
     LinearLayoutManager mLayoutManager;
     FeedbackViewAdapter mFeedbackViewAdapter;
     TextView mSendTextView;
+    ImageButton mBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class WorkActivity extends AppCompatActivity {
         ImagePagerAdapter imagePagerAdapter = new ImagePagerAdapter(this);
 
         binding.workViewPager.setAdapter(imagePagerAdapter);
+
 
         mSliderDotspannel = binding.sliderDots;
 
@@ -78,6 +81,13 @@ public class WorkActivity extends AppCompatActivity {
             }
         });
 
+        mBackButton = findViewById(R.id.backButton);
+        mBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         mRecyclerView= findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(false);
@@ -107,8 +117,5 @@ public class WorkActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        finish();
-    }
+
 }
