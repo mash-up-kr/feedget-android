@@ -1,6 +1,6 @@
 package kr.mashup.projectnoname.ui.main;
 
-public interface Contract {
+interface Contract {
 
     interface View {
 
