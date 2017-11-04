@@ -43,7 +43,7 @@ public class CreationPresenter implements Contract.Presenter {
             creation.description = "동화책 편집디자인";
             creation.title = "동화책 편집디자인";
             creation.feedbackCount = 3;
-            dataList.add(new Creation());
+            dataList.add(creation);
         }
 
         return dataList;

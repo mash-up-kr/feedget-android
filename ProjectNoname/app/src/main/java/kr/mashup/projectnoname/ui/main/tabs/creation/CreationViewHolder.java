@@ -19,7 +19,19 @@ public class CreationViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(Creation creation) {
-        binding.image.setImageResource(R.drawable.test_img_1);
+        binding.setCreation(creation);
+
+        bindRandomDummyImage();
+    }
+
+    private void bindRandomDummyImage() {
+        binding.image.setImageResource(
+                new int[]{
+                        R.drawable.test_img_1,
+                        R.drawable.test_img_2,
+                        R.drawable.test_img_3
+                }[(int) (Math.random() * 3)]
+        );
     }
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 
 import kr.mashup.projectnoname.R;
 import kr.mashup.projectnoname.databinding.ActivityMainBinding;
@@ -27,7 +28,15 @@ public final class MainActivity extends BaseActivity<Contract.Presenter> impleme
     }
 
     private void init() {
-        presenter.initPager(binding.pager);
+        presenter.initTabPager(binding.pager, binding.tab);
+
+        setUpToolbar();
+    }
+
+    private void setUpToolbar() {
+        setSupportActionBar(binding.toolbar.toolbar);
+
+        binding.toolbar.toolbar.setTitle(R.string.app_name);
     }
 
     @Override

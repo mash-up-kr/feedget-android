@@ -1,5 +1,6 @@
 package kr.mashup.projectnoname.ui.main;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
@@ -8,6 +9,7 @@ import com.annimon.stream.function.Function;
 import com.annimon.stream.function.IntFunction;
 
 import kr.mashup.projectnoname.ui.main.tabs.creation.CreationFragment;
+
 public class MainPresenter implements Contract.Presenter {
 
     protected Contract.View view;
@@ -23,14 +25,39 @@ public class MainPresenter implements Contract.Presenter {
     }
 
     @Override
-    public void initPager(ViewPager pager) {
+    public void initTabPager(ViewPager pager, TabLayout tabLayout) {
         pagerAdapter = new MainPagerAdapter(view.getSupportFragmentManager());
-        pagerAdapter.setFragments(
-                Stream.of(getCategories())
-                        .map((Function<String, Fragment>) category -> new CreationFragment().setCategory(category))
-                        .toArray(value -> new Fragment[value])
-        );
+
+        String[] categories = getCategories();
+        Fragment[] fragments = new Fragment[categories.length];
+
+        for (int i = 0; i < categories.length; i++) {
+            String category = categories[i];
+
+            tabLayout.addTab(tabLayout.newTab().setText(category));
+            fragments[i] = new CreationFragment().setCategory(category);
+        }
+
+        pagerAdapter.setFragments(fragments);
         pager.setAdapter(pagerAdapter);
+
+        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                pager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     private String[] getCategories() {
