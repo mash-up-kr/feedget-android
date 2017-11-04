@@ -7,10 +7,10 @@ import com.annimon.stream.Stream;
 import com.annimon.stream.function.Function;
 import com.annimon.stream.function.IntFunction;
 
-import kr.mashup.projectnoname.ui.base.BasePresenter;
 import kr.mashup.projectnoname.ui.main.tabs.creation.CreationFragment;
+public class MainPresenter implements Contract.Presenter {
 
-public class MainPresenter extends BasePresenter<Contract.View> implements Contract.Presenter {
+    protected Contract.View view;
 
     private final String[] TEST_CATEGORIES = {
             "전체", "디자인", "미술", "공예", "요리"
@@ -19,7 +19,7 @@ public class MainPresenter extends BasePresenter<Contract.View> implements Contr
     private MainPagerAdapter pagerAdapter;
 
     public MainPresenter(Contract.View view) {
-        super(view);
+        this.view = view;
     }
 
     @Override

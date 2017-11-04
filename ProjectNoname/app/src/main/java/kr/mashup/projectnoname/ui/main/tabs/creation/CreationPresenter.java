@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import kr.mashup.projectnoname.model.Creation;
-import kr.mashup.projectnoname.ui.base.BasePresenter;
 
-public class CreationPresenter extends BasePresenter<Contract.View> implements Contract.Presenter {
+public class CreationPresenter implements Contract.Presenter {
 
     private final int LIST_GRID_COLUM_SIZE = 2;
     private CreationListAdapter adapter;
+    private Contract.View view;
 
     public CreationPresenter(Contract.View view) {
-        super(view);
+        this.view = view;
     }
 
     @Override
