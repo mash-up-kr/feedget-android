@@ -9,6 +9,11 @@ import kr.mashup.projectnoname.ui.base.BaseActivity;
 public final class MainActivity extends BaseActivity<Contract.Presenter> implements Contract.View {
 
     @Override
+    protected MainPresenter buildPresenter() {
+        return new MainPresenter(this);
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -16,9 +21,8 @@ public final class MainActivity extends BaseActivity<Contract.Presenter> impleme
         init();
     }
 
-    @Override
-    protected void init() {
-        presenter = new MainPresenter(this);
+    private void init() {
+
     }
 
 }
