@@ -15,4 +15,9 @@ public abstract class BaseActivity<T> extends AppCompatActivity {
         presenter = buildPresenter();
         super.onCreate(savedInstanceState);
     }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+    }
 }
