@@ -82,12 +82,7 @@ public class WorkActivity extends AppCompatActivity {
         });
 
         mBackButton = findViewById(R.id.backButton);
-        mBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        mBackButton.setOnClickListener(view -> finish());
 
         mRecyclerView= findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(false);
