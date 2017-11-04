@@ -33,6 +33,7 @@ class IntroActivity : AppCompatActivity(), IntroView {
             }
 
             override fun onCancel() {
+                Toast.makeText(this@IntroActivity, "onCancel", Toast.LENGTH_SHORT).show()
             }
 
             override fun onError(error: FacebookException?) {

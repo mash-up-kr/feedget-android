@@ -1,6 +1,5 @@
 package kr.mashup.projectnoname.ui.splash
 
-import kr.mashup.projectnoname.ui.base.BasePresenter
 import kr.mashup.projectnoname.ui.base.Presenter
 import kr.mashup.projectnoname.ui.base.View
 
