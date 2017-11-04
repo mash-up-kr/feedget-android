@@ -11,8 +11,8 @@ import java.io.File
 class PostContentsUseCase(private val contentsRepository: ContentsRepository) {
 
     fun execute(id: Long, files: Array<File>) =
-        contentsRepository.postContents(
-             files.map {
+        contentsRepository.postContents(id,
+            files = files.map {
                 MultipartBody.Part.createFormData("files", it.name, RequestBody.create(MediaType.parse("image/*"), it))
             }
         ).observeOn(AndroidSchedulers.mainThread())
