@@ -1,4 +1,4 @@
-package kr.mashup.projectnoname.di
+package kr.mashup.projectnoname.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
