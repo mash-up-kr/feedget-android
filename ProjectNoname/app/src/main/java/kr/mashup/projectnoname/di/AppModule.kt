@@ -16,7 +16,7 @@ internal class AppModule {
     @Provides
     fun provideApiService(): ApiService =
         Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
+            .baseUrl("192.168.0.4:8060/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
