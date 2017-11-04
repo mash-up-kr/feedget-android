@@ -12,7 +12,6 @@
             android:id="@+id/img_work"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            bind:imageUrl="@{image}"
-            />
+            bind:imageUrl="@{image}" />
     </RelativeLayout>
 </layout>
