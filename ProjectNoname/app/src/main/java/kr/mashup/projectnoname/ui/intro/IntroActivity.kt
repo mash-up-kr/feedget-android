@@ -13,6 +13,7 @@ import com.facebook.login.LoginResult
 import kotlinx.android.synthetic.main.activity_intro.*
 import kr.mashup.projectnoname.R
 import kr.mashup.projectnoname.extension.startActivity
+import kr.mashup.projectnoname.extension.startActivityWithFinish
 import kr.mashup.projectnoname.ui.main.MainActivity
 
 class IntroActivity : AppCompatActivity(), IntroView {
@@ -46,7 +47,7 @@ class IntroActivity : AppCompatActivity(), IntroView {
     }
 
     override fun startMain() {
-        startActivity<MainActivity>()
+        startActivityWithFinish<MainActivity>()
     }
 
 

@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
+import kr.mashup.projectnoname.ui.main.tabs.creation.CreationFragment;
+
 public class MyPageActivity extends AppCompatActivity {
 
     Fragment[] arrFragments;
@@ -23,8 +25,8 @@ public class MyPageActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tl_tabs);
 
         arrFragments = new Fragment[2];
-        arrFragments[0] = new EmptyFragment();
-        arrFragments[1] = new EmptyFragment();
+        arrFragments[0] = new CreationFragment();
+        arrFragments[1] = new CreationFragment();
 
         MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager(), arrFragments);
 
