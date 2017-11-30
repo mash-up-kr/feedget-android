@@ -7,7 +7,7 @@ apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "kr.mashup.projectnoname"
+        applicationId "kr.mashup.feedget"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1

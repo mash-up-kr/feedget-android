@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="kr.mashup.projectnoname.MyPageActivity">
+    tools:context="kr.mashup.feedget.MyPageActivity">
 
     <LinearLayout
         android:background="#dcdbdb"
