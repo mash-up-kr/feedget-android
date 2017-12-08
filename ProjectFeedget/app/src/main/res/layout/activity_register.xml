@@ -14,30 +14,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-            <!-- 카테고리 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingTop="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="카테고리 선택(필수)"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
+            android:orientation="vertical"
+            android:background="@color/white">
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/divider" />
+                android:layout_height="2dp"
+                android:background="@drawable/drop_shadow"
+                />
 
             <!-- 제목 -->
             <LinearLayout
@@ -49,10 +33,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="제목을 입력해주세요."
-                    android:paddingBottom="8dp"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
+                    android:hint="제목"
+                    android:lines="1"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -61,8 +47,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:background="@color/divider" />
 
             <EditText
@@ -70,52 +56,84 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:gravity="top"
-                android:hint="내용을 입력해주세요."
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingTop="8dp"
+                android:hint="본문을 입력해주세요."
+                android:padding="16dp"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <!-- 하단 입력뷰 -->
+
         <LinearLayout
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="40dp"
+            android:background="@color/lightgray"
+            android:weightSum="8"
+            style="@android:style/ButtonBar"
+            >
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray" />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/icon_gallery" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/divider"
-                android:gravity="center_vertical"
-                android:paddingBottom="12dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="12dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|bottom"
+                android:text="제목"
+                />
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/icon_gallery" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|bottom"
+                android:text="본문1"
+                />
 
-                <android.support.v4.widget.Space
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|bottom"
+                android:text="본문2"
+                />
 
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:text="실명 비공개"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="29dp"
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|bottom"
+                android:text="본문3"
+                />
 
-            </LinearLayout>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/icon_gallery" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/icon_gallery" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:src="@drawable/icon_gallery" />
+
 
 
         </LinearLayout>
