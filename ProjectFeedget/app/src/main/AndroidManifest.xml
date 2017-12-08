@@ -30,7 +30,8 @@
         <activity android:name="kr.mashup.feedget.ui.main.MainActivity">
         </activity>
 
-        <activity android:name="kr.mashup.feedget.ui.register.RegisterActivity" />
+        <activity android:name="kr.mashup.feedget.ui.register.RegisterActivity"
+            android:windowSoftInputMode="adjustResize"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
