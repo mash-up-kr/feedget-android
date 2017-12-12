@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import kr.mashup.feedget.R;
 import kr.mashup.feedget.WorkActivity;
 import kr.mashup.feedget.databinding.CardMainCreationBinding;
-import kr.mashup.feedget.model.Creation;
+import kr.mashup.feedget.model.dummy.Creation;
 
 public class CreationViewHolder extends RecyclerView.ViewHolder {
 

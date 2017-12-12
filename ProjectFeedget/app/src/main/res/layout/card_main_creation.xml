@@ -6,7 +6,7 @@
 
         <variable
             name="creation"
-            type="kr.mashup.feedget.model.Creation" />
+            type="kr.mashup.feedget.model.dummy.Creation" />
     </data>
 
     <android.support.constraint.ConstraintLayout

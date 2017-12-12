@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import kr.mashup.feedget.model.Creation;
+import kr.mashup.feedget.model.dummy.Creation;
 
 public class CreationPresenter implements Contract.Presenter {
 

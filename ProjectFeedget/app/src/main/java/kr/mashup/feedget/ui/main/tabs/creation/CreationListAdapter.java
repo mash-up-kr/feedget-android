@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import kr.mashup.feedget.R;
-import kr.mashup.feedget.model.Creation;
+import kr.mashup.feedget.model.dummy.Creation;
 
 public class CreationListAdapter extends RecyclerView.Adapter<CreationViewHolder> {
 
