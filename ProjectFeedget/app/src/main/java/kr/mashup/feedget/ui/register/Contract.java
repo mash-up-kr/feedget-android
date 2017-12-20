@@ -9,7 +9,7 @@ interface Contract {
     }
 
     interface Presenter {
-
+        void setOnClickEvent(android.view.View view);
     }
 
 }
