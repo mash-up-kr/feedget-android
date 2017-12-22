@@ -3,6 +3,7 @@ package kr.mashup.feedget.ui.register;
 import android.Manifest;
 import android.app.Service;
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -73,6 +74,61 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
                     binding.toolbar.tvCategoryArrow.setImageResource(R.drawable.icon_arrowdown);
 
                 }
+            }
+        });
+
+        binding.modal.tvCategoryDesign.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                setDefaultText();
+                setCategoryTitle("디자인");
+                binding.modal.tvCategoryDesign.setTypeface(Typeface.DEFAULT_BOLD);
+
+            }
+        });
+
+        binding.modal.tvCategoryCrafts.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                setDefaultText();
+                setCategoryTitle("회화");
+                binding.modal.tvCategoryCrafts.setTypeface(Typeface.DEFAULT_BOLD);
+
+            }
+        });
+
+        binding.modal.tvCategoryPainting.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                setDefaultText();
+                setCategoryTitle("공예");
+                binding.modal.tvCategoryPainting.setTypeface(Typeface.DEFAULT_BOLD);
+
+            }
+        });
+
+        binding.modal.tvCategoryWriting.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                setDefaultText();
+                setCategoryTitle("글");
+                binding.modal.tvCategoryWriting.setTypeface(Typeface.DEFAULT_BOLD);
+
+            }
+        });
+
+        binding.modal.tvCategoryEtc.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                setDefaultText();
+                setCategoryTitle("기타");
+                binding.modal.tvCategoryEtc.setTypeface(Typeface.DEFAULT_BOLD);
+
             }
         });
 
@@ -173,6 +229,19 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
             }
         });
     };
+
+    private void setDefaultText(){
+        binding.modal.tvCategoryWriting.setTypeface(Typeface.DEFAULT);
+        binding.modal.tvCategoryPainting.setTypeface(Typeface.DEFAULT);
+        binding.modal.tvCategoryCrafts.setTypeface(Typeface.DEFAULT);
+        binding.modal.tvCategoryDesign.setTypeface(Typeface.DEFAULT);
+        binding.modal.tvCategoryEtc.setTypeface(Typeface.DEFAULT);
+
+    }
+
+    private void setCategoryTitle(String content){
+        binding.toolbar.tvCategory.setText(content);
+    }
 
 
 
