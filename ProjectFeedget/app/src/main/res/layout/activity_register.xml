@@ -10,112 +10,133 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar_register" />
 
-        <LinearLayout
+        <FrameLayout
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            >
 
-            <!-- 카테고리 -->
             <LinearLayout
+                android:id="@+id/inputForm"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingTop="8dp">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@color/white">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@drawable/drop_shadow"
+                    />
+
+                <!-- 제목 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="카테고리 선택(필수)"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="제목"
+                        android:lines="1"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="12dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/divider" />
+                </LinearLayout>
 
-            <!-- 제목 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@color/divider" />
 
                 <EditText
+                    android:id="@+id/et_contentForm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="제목을 입력해주세요."
-                    android:paddingBottom="8dp"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="8dp"
+                    android:gravity="top"
+                    android:hint="본문을 입력해주세요."
+                    android:padding="16dp"
                     android:textColor="@color/black"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
+
+
 
             </LinearLayout>
+            <include
+                android:id="@+id/modal"
+                layout="@layout/modal_register_category"
+                />
 
-            <View
+            <FrameLayout
+                android:id="@+id/imageListFrame"
+                android:layout_gravity="bottom"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:background="@color/divider" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:gravity="top"
-                android:hint="내용을 입력해주세요."
-                android:paddingBottom="8dp"
-                android:paddingLeft="12dp"
-                android:paddingTop="8dp"
-                android:textColor="@color/black"
-                android:textSize="16dp" />
-
-        </LinearLayout>
-
-        <!-- 하단 입력뷰 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/divider"
-                android:gravity="center_vertical"
-                android:paddingBottom="12dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="12dp">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/icon_gallery" />
-
-                <android.support.v4.widget.Space
-                    android:layout_width="match_parent"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-
-                <CheckBox
+                    android:id="@+id/iv_image"
                     android:layout_width="wrap_content"
-                    android:text="실명 비공개"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    />
 
-            </LinearLayout>
+                <HorizontalScrollView
+                    android:id="@+id/hori_scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="false"
+                    android:foregroundGravity="left"
+                    >
+
+
+                    <LinearLayout
+                        android:id="@+id/selected_photos_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:animateLayoutChanges="true"
+                        android:gravity="left"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+
+                        <!-- images will be added dynamicall to this layout -->
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <!-- 하단 입력뷰 -->
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/lightgray"
+            android:weightSum="1"
+            style="@android:style/ButtonBar"
+            >
+
+            <ImageView
+                android:id="@+id/iv_imageBtn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_gallery" />
+
+
 
 
         </LinearLayout>
