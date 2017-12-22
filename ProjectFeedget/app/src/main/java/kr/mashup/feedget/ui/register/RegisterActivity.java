@@ -1,6 +1,7 @@
 package kr.mashup.feedget.ui.register;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -35,7 +36,7 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
 
     SoftKeyboard softKeyboard;
     private ActivityRegisterBinding binding;
-
+    public static Activity registerActivity;
     ArrayList<Uri> selectedUriList;
 
 
@@ -49,6 +50,7 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+        registerActivity = RegisterActivity.this;
         checkingKeyboard();
         init();
     }
