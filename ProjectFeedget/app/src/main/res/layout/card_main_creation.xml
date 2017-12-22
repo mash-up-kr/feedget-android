@@ -9,64 +9,145 @@
             type="kr.mashup.feedget.model.Creation" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp">
+        android:layout_height="match_parent">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="1:1">
+            android:layout_height="16dp"
+            android:background="#14000000"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/profile_sample" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/black_70"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="8dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="4dp"
-                android:paddingTop="8dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="56dp"
+                android:layout_marginTop="8dp"
+                android:text="abcd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.555" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:text="@{creation.title}"
-                    android:textColor="@color/white"
-                    android:textSize="16dp" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:text="10일 남음"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginLeft="4dp"
-                    android:src="@drawable/icon_comment" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:text="@{String.valueOf(creation.feedbackCount)}"
-                    android:textColor="@color/gray"
-                    android:textSize="16dp" />
+        <ImageView
+            android:id="@+id/image"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="203dp"
+            android:src="@drawable/sample_img"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            </LinearLayout>
+        <FrameLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:padding="1dp">
 
+            <TextView
+                android:text=" 100 "
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="16dp"
+                android:letterSpacing="0.04"
+                android:background="@drawable/button_stroke"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{creation.title}"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
         </FrameLayout>
 
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{creation.description}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:maxLength="100"
+            android:ellipsize="end"
+            />
 
-    </android.support.constraint.ConstraintLayout>
+        <View
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:background="#d8d8d8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:src="@drawable/oval_2_copy_5"
+                android:layout_width="20dp"
+                android:layout_height="18dp" />
+
+            <TextView
+                android:text="평가"
+                android:layout_marginStart="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="@{String.valueOf(creation.feedbackCount)}"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/dodger_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 
 </layout>

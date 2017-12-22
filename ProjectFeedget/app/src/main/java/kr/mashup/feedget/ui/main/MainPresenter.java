@@ -14,7 +14,7 @@ public class MainPresenter implements Contract.Presenter {
     protected Contract.View view;
 
     private final String[] TEST_CATEGORIES = {
-            "전체", "디자인", "미술", "공예", "요리"
+            "전체", "디자인", "회화", "공예", "글", "기타"
     };
 
     private MainPagerAdapter pagerAdapter;

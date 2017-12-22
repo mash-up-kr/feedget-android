@@ -38,8 +38,8 @@ public final class MainActivity extends BaseActivity<Contract.Presenter> impleme
     private void setUpToolbar() {
         setSupportActionBar(binding.toolbar.toolbar);
 
-        binding.toolbar.toolbar.setTitle(R.string.app_name);
-        binding.toolbar.rightButton.setOnClickListener(__ -> {
+//        binding.toolbar.toolbar.setTitle(R.string.app_name);
+        binding.toolbar.searchButton.setOnClickListener(__ -> {
             startMyPageActivity();
         });
     }
