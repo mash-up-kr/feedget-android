@@ -16,11 +16,19 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="kr.mashup.feedget.WorkActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name="kr.mashup.feedget.ui.splash.SplashActivity"></activity>
+            android:windowSoftInputMode="adjustResize"/>
+
+
+        <activity android:name="kr.mashup.feedget.ui.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity android:name="kr.mashup.feedget.ui.intro.IntroActivity" />
-        <activity android:name="kr.mashup.feedget.ui.main.MainActivity"></activity>
+        <activity android:name="kr.mashup.feedget.ui.main.MainActivity"/>
 
         <activity android:name="kr.mashup.feedget.ui.register.RegisterActivity" />
 
@@ -32,6 +40,8 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
+        <activity android:name="kr.mashup.feedget.MyPageActivity"/>
+        <activity android:name=".ui.creation.detail.CreationDetailActivity"/>
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -42,15 +52,6 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
-        </activity>
-        <activity android:name="kr.mashup.feedget.MyPageActivity"></activity>
-
-        <activity android:name=".ui.creation.detail.CreationDetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
