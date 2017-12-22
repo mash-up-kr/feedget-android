@@ -60,9 +60,9 @@ public class MyPageActivity extends AppCompatActivity {
 
             switch (position) {
                 case 0:
-                    return "내가 쓴 글";
+                    return "게시글";
                 case 1:
-                    return "내가 남긴 피드백";
+                    return "남긴 피드백";
 
 
                 default:
