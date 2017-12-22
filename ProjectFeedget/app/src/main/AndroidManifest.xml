@@ -32,6 +32,8 @@
         <activity android:name="kr.mashup.feedget.ui.register.RegisterActivity"
             android:windowSoftInputMode="adjustResize"/>
 
+        <activity android:name="kr.mashup.feedget.ui.register.RegisterPointActivity"/>
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
