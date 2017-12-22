@@ -23,13 +23,13 @@
                 android:text="이전"
                 />
 
-            <view
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:background="@color/white"
-                ></view>
+                ></View>
 
             <TextView
                 android:id="@+id/register_submit"
@@ -70,7 +70,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/black"
                 />
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
@@ -87,6 +87,7 @@
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_weight="1"
+                    android:layout_gravity="bottom"
                     android:gravity="center_vertical"
                     />
 
@@ -98,10 +99,10 @@
                     android:layout_marginLeft="8dp"
                     android:gravity="bottom"
                     />
-                
+
             </LinearLayout>
-            
-            <view
+
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/black"
@@ -114,7 +115,7 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="16dp"
                 >
-                
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
