@@ -13,7 +13,8 @@
         <FrameLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <LinearLayout
                 android:id="@+id/inputForm"
@@ -71,6 +72,10 @@
 
 
             </LinearLayout>
+            <include
+                android:id="@+id/modal"
+                layout="@layout/modal_register_category"
+                />
 
             <FrameLayout
                 android:id="@+id/imageListFrame"

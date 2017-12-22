@@ -47,14 +47,33 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
-
         checkingKeyboard();
         init();
     }
 
     private void init(){
+        //시작시 카테고리 선택 창 안보이게 함
+        binding.modal.modalCategory.setVisibility(View.GONE);
+
         binding.toolbar.tvBackBtn.setOnClickListener(__ ->{
             finish();
+        });
+
+        binding.toolbar.tvCategoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (binding.modal.modalCategory.getVisibility() == View.GONE){
+
+                    binding.modal.modalCategory.setVisibility(View.VISIBLE);
+                    binding.toolbar.tvCategoryArrow.setImageResource(R.drawable.icon_arrowup);
+
+                }else if(binding.modal.modalCategory.getVisibility() == View.VISIBLE){
+
+                    binding.modal.modalCategory.setVisibility(View.GONE);
+                    binding.toolbar.tvCategoryArrow.setImageResource(R.drawable.icon_arrowdown);
+
+                }
+            }
         });
 
         binding.ivImageBtn.setOnClickListener(new View.OnClickListener(){
