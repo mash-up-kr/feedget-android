@@ -2,6 +2,7 @@ package kr.mashup.feedget.ui.register;
 
 import android.Manifest;
 import android.app.Service;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -129,6 +130,13 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
                 setCategoryTitle("기타");
                 binding.modal.tvCategoryEtc.setTypeface(Typeface.DEFAULT_BOLD);
 
+            }
+        });
+
+        binding.toolbar.tvNextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, RegisterPointActivity.class));
             }
         });
 
