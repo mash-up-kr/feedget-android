@@ -30,11 +30,11 @@ public class RegisterPointActivity extends AppCompatActivity{
     }
 
     private void init(){
-        binding.registerBack.setOnClickListener(__ ->{
+        binding.textViewRegisterBackButton.setOnClickListener(__ ->{
             finish();
         });
 
-        binding.registerSubmit.setOnClickListener(__ ->{
+        binding.textViewRegisterSubmitButton.setOnClickListener(__ ->{
 
             finishAlert();
 

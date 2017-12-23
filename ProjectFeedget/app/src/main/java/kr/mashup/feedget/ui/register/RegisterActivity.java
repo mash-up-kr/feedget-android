@@ -59,90 +59,90 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
         //시작시 카테고리 선택 창 안보이게 함
         binding.modal.modalCategory.setVisibility(View.GONE);
 
-        binding.toolbar.tvBackBtn.setOnClickListener(__ ->{
+        binding.toolbar.textViewBackButton.setOnClickListener(__ ->{
             finish();
         });
 
-        binding.toolbar.tvCategoryBtn.setOnClickListener(new View.OnClickListener() {
+        binding.toolbar.textViewCategoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (binding.modal.modalCategory.getVisibility() == View.GONE){
 
                     binding.modal.modalCategory.setVisibility(View.VISIBLE);
-                    binding.toolbar.tvCategoryArrow.setImageResource(R.drawable.icon_arrowup);
+                    binding.toolbar.textViewCategoryArrow.setImageResource(R.drawable.icon_arrowup);
 
                 }else if(binding.modal.modalCategory.getVisibility() == View.VISIBLE){
 
                     binding.modal.modalCategory.setVisibility(View.GONE);
-                    binding.toolbar.tvCategoryArrow.setImageResource(R.drawable.icon_arrowdown);
+                    binding.toolbar.textViewCategoryArrow.setImageResource(R.drawable.icon_arrowdown);
 
                 }
             }
         });
 
-        binding.modal.tvCategoryDesign.setOnClickListener(new View.OnClickListener(){
+        binding.modal.textViewCategoryDesign.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 setDefaultText();
                 setCategoryTitle("디자인");
-                binding.modal.tvCategoryDesign.setTypeface(Typeface.DEFAULT_BOLD);
+                binding.modal.textViewCategoryDesign.setTypeface(Typeface.DEFAULT_BOLD);
 
             }
         });
 
-        binding.modal.tvCategoryCrafts.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                setDefaultText();
-                setCategoryTitle("회화");
-                binding.modal.tvCategoryCrafts.setTypeface(Typeface.DEFAULT_BOLD);
-
-            }
-        });
-
-        binding.modal.tvCategoryPainting.setOnClickListener(new View.OnClickListener(){
+        binding.modal.textViewCategoryCrafts.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 setDefaultText();
                 setCategoryTitle("공예");
-                binding.modal.tvCategoryPainting.setTypeface(Typeface.DEFAULT_BOLD);
+                binding.modal.textViewCategoryCrafts.setTypeface(Typeface.DEFAULT_BOLD);
 
             }
         });
 
-        binding.modal.tvCategoryWriting.setOnClickListener(new View.OnClickListener(){
+        binding.modal.textViewCategoryPainting.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                setDefaultText();
+                setCategoryTitle("회화");
+                binding.modal.textViewCategoryPainting.setTypeface(Typeface.DEFAULT_BOLD);
+
+            }
+        });
+
+        binding.modal.textViewCategoryWriting.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 setDefaultText();
                 setCategoryTitle("글");
-                binding.modal.tvCategoryWriting.setTypeface(Typeface.DEFAULT_BOLD);
+                binding.modal.textViewCategoryWriting.setTypeface(Typeface.DEFAULT_BOLD);
 
             }
         });
 
-        binding.modal.tvCategoryEtc.setOnClickListener(new View.OnClickListener(){
+        binding.modal.textViewCategoryEtc.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 setDefaultText();
                 setCategoryTitle("기타");
-                binding.modal.tvCategoryEtc.setTypeface(Typeface.DEFAULT_BOLD);
+                binding.modal.textViewCategoryEtc.setTypeface(Typeface.DEFAULT_BOLD);
 
             }
         });
 
-        binding.toolbar.tvNextBtn.setOnClickListener(new View.OnClickListener() {
+        binding.toolbar.textViewNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(RegisterActivity.this, RegisterPointActivity.class));
             }
         });
 
-        binding.ivImageBtn.setOnClickListener(new View.OnClickListener(){
+        binding.imageViewImageButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
@@ -214,7 +214,7 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
 
     private void checkingKeyboard(){
         InputMethodManager controllManager = (InputMethodManager)getSystemService(Service.INPUT_METHOD_SERVICE);
-        softKeyboard = new SoftKeyboard(binding.inputForm, controllManager);
+        softKeyboard = new SoftKeyboard(binding.contentLayout, controllManager);
 
         softKeyboard.setSoftKeyboardCallback(new SoftKeyboard.SoftKeyboardChanged(){
             @Override
@@ -241,16 +241,16 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
     };
 
     private void setDefaultText(){
-        binding.modal.tvCategoryWriting.setTypeface(Typeface.DEFAULT);
-        binding.modal.tvCategoryPainting.setTypeface(Typeface.DEFAULT);
-        binding.modal.tvCategoryCrafts.setTypeface(Typeface.DEFAULT);
-        binding.modal.tvCategoryDesign.setTypeface(Typeface.DEFAULT);
-        binding.modal.tvCategoryEtc.setTypeface(Typeface.DEFAULT);
+        binding.modal.textViewCategoryWriting.setTypeface(Typeface.DEFAULT);
+        binding.modal.textViewCategoryPainting.setTypeface(Typeface.DEFAULT);
+        binding.modal.textViewCategoryCrafts.setTypeface(Typeface.DEFAULT);
+        binding.modal.textViewCategoryDesign.setTypeface(Typeface.DEFAULT);
+        binding.modal.textViewCategoryEtc.setTypeface(Typeface.DEFAULT);
 
     }
 
     private void setCategoryTitle(String content){
-        binding.toolbar.tvCategory.setText(content);
+        binding.toolbar.textViewCategory.setText(content);
     }
 
 

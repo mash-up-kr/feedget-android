@@ -17,7 +17,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/inputForm"
+                android:id="@+id/contentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -59,7 +59,7 @@
                     android:background="@color/divider" />
 
                 <EditText
-                    android:id="@+id/et_contentForm"
+                    android:id="@+id/editText_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
@@ -131,7 +131,7 @@
             >
 
             <ImageView
-                android:id="@+id/iv_imageBtn"
+                android:id="@+id/imageView_imageButton"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/icon_gallery" />

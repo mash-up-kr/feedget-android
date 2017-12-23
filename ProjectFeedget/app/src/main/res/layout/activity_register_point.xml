@@ -12,7 +12,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/register_back"
+                android:id="@+id/textView_registerBackButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -32,7 +32,7 @@
                 ></View>
 
             <TextView
-                android:id="@+id/register_submit"
+                android:id="@+id/textView_registerSubmitButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
