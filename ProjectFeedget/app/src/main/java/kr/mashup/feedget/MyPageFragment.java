@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import kr.mashup.feedget.ui.main.tabs.creation.CreationFragment;
 
@@ -44,14 +45,6 @@ public class MyPageFragment extends Fragment {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        /*ImageButton backButton = getView().findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().finish();
-            }
-        });*/
-
     }
 
     private void initLayout() {
@@ -60,6 +53,16 @@ public class MyPageFragment extends Fragment {
 
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) getView().findViewById(R.id.collapsing_toolbar);
         ctl.setTitle("마이페이지");
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+
+        ImageButton backButton = getView().findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
     }
 
     class MainPagerAdapter extends FragmentPagerAdapter {
