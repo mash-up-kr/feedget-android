@@ -7,12 +7,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import kr.mashup.feedget.ui.main.tabs.creation.CreationFragment;
 
@@ -54,13 +54,17 @@ public class MyPageFragment extends Fragment {
         CollapsingToolbarLayout ctl = (CollapsingToolbarLayout) getView().findViewById(R.id.collapsing_toolbar);
         ctl.setTitle("마이페이지");
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
 
-        ImageButton backButton = getView().findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                getActivity().finish();
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
     }
@@ -73,10 +77,7 @@ public class MyPageFragment extends Fragment {
             super(fm);
             this.arrFragments = arrFragments;
         }
-
-
-
-
+        
         @Override
         public CharSequence getPageTitle(int position) {
 
