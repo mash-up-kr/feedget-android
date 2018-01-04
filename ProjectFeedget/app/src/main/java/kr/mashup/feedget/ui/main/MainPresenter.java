@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import kr.mashup.feedget.ui.main.tabs.creation.CreationFragment;
-import kr.mashup.feedget.ui.register.RegisterActivity;
+import kr.mashup.feedget.ui.register.register_content.RegisterActivity;
 
 public class MainPresenter implements Contract.Presenter {
 
