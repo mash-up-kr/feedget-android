@@ -29,8 +29,8 @@ public class MyPageFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         initLayout();
 
         ViewPager viewPager = getView().findViewById(R.id.vp_pager);
@@ -77,7 +77,7 @@ public class MyPageFragment extends Fragment {
             super(fm);
             this.arrFragments = arrFragments;
         }
-        
+
         @Override
         public CharSequence getPageTitle(int position) {
 
