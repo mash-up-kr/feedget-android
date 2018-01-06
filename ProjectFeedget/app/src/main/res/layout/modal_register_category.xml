@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/modalCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/box_shadow"
+        >
+
+        <LinearLayout
+            android:layout_width="328dp"
+            android:layout_height="84dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:text="카테고리"
+                android:textSize="14sp"
+                android:letterSpacing="0.03"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="16dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/selectCategoryLayout"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:weightSum="5"
+                android:paddingHorizontal="5dp"
+                >
+
+                <TextView
+                    android:id="@+id/textView_categoryDesign"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="디자인"
+                    android:paddingHorizontal="8dp"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/textView_categoryPainting"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="회화"
+                    android:paddingHorizontal="8dp"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/textView_categoryCrafts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="공예"
+                    android:paddingHorizontal="8dp"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+
+
+                <TextView
+                    android:id="@+id/textView_categoryWriting"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="글"
+                    android:paddingHorizontal="8dp"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+
+
+                <TextView
+                    android:id="@+id/textView_categoryEtc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="기타"
+                    android:paddingHorizontal="8dp"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</layout>

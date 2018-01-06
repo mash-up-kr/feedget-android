@@ -16,7 +16,39 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tab"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="48dp"
+            app:tabTextColor="#8f8f8f"
+            app:tabSelectedTextColor="#000000"
+            android:textAlignment="textEnd"
+            android:background="@color/colorPrimaryDark"
+            android:fillViewport="false"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabMinWidth="72dp"
+            app:tabMode="scrollable" />
+
+
+        <View
+            android:background="#d8d8d8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+
+        <LinearLayout
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Spinner>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></Spinner>
+
+        </LinearLayout>
+
 
 
         <!-- 리스트 영역 -->
@@ -34,9 +66,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"
-                android:layout_marginBottom="12dp"
-                android:layout_marginRight="12dp"
-                android:src="@drawable/icon_write" />
+                android:layout_marginBottom="14dp"
+                android:layout_marginRight="20dp"
+                app:elevation="12dp"
+                app:borderWidth="0dp"
+                android:src="@drawable/ic_add"
+                />
 
         </FrameLayout>
 
