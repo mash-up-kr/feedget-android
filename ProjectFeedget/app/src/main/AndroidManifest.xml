@@ -46,7 +46,9 @@
         </activity>
         <activity android:name="kr.mashup.feedget.MyPageActivity"></activity>
 
-        <activity android:name=".ui.creation.detail.CreationDetailActivity">
+        <activity
+            android:name=".ui.creation.detail.CreationDetailActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
