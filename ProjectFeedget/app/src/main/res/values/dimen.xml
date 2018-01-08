@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="rotate270">270</dimen>
+    <dimen name="dropShadow_height">2dp</dimen>
+
+    <dimen name="padding_default">16dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="textSize_default">16sp</dimen>
+
+    <dimen name="width_12">12dp</dimen>
+    <dimen name="width_20">20dp</dimen>
+
+    <dimen name="height_1">1dp</dimen>
+    <dimen name="height_12">12dp</dimen>
+    <dimen name="height_20">20dp</dimen>
+    <dimen name="height_40">40dp</dimen>
+    <dimen name="height_56">56dp</dimen>
+
+</resources>

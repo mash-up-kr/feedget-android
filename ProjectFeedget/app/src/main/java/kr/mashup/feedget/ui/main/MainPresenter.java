@@ -7,14 +7,14 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import kr.mashup.feedget.ui.main.tabs.creation.CreationFragment;
-import kr.mashup.feedget.ui.register.RegisterActivity;
+import kr.mashup.feedget.ui.register.register_content.RegisterActivity;
 
 public class MainPresenter implements Contract.Presenter {
 
     protected Contract.View view;
 
     private final String[] TEST_CATEGORIES = {
-            "전체", "디자인", "미술", "공예", "요리"
+            "전체", "디자인", "회화", "공예", "글", "기타"
     };
 
     private MainPagerAdapter pagerAdapter;
