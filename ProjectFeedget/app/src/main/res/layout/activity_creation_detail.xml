@@ -31,7 +31,8 @@
             <!-- 컨텐츠 -->
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingBottom="68dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -198,11 +199,105 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="4dp"
-                                android:background="@color/dodger_blue"
                                 android:text="5"
                                 android:textSize="14dp" />
 
                         </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <!-- 댓글 없을때 -->
+                            <FrameLayout
+                                android:id="@+id/view_no_comment"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="48dp"
+                                        android:layout_height="44dp"
+                                        android:src="@drawable/icon_comment_white" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp"
+                                        android:text="아직 평가가 없어요"
+                                        android:textColor="@color/black"
+                                        android:textSize="12dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="6dp"
+                                        android:text="첫 번째 평가를 작성해 볼까요?"
+                                        android:textColor="@color/black"
+                                        android:textSize="16dp" />
+
+                                </LinearLayout>
+
+                            </FrameLayout>
+
+                            <!-- 댓글 달기 전 -->
+                            <FrameLayout
+                                android:id="@+id/view_before_comment"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:background="@color/black_03">
+
+                                <ImageView
+                                    android:layout_width="70dp"
+                                    android:layout_height="47dp"
+                                    android:layout_gravity="right|top"
+                                    android:src="@drawable/icon_before_comment_edge" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="48dp"
+                                        android:layout_height="44dp"
+                                        android:src="@drawable/icon_comment_white" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="20dp"
+                                        android:text="내 피드백을 남기면 다른 유저의 피드백을 볼 수 있어요."
+                                        android:textColor="@color/black"
+                                        android:textSize="12dp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="6dp"
+                                        android:text="나도 피드백에 참여해볼까요?"
+                                        android:textColor="@color/black"
+                                        android:textSize="16dp" />
+
+                                </LinearLayout>
+
+                            </FrameLayout>
+
+                            <!-- 댓글 목록 -->
+                            <android.support.v7.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </FrameLayout>
 
                     </LinearLayout>
 

@@ -7,11 +7,14 @@ import java.util.concurrent.TimeUnit;
 
 public class StringFormatter {
 
+    private static final String EMPTY_TEXT = "-";
+
     /*
     2017.03.01
     2015.12.30
      */
     public static String dateYYMMDDdotFormat(Date date) {
+        if (date == null) return EMPTY_TEXT;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         return dateFormat.format(date);
     }
@@ -23,6 +26,8 @@ public class StringFormatter {
     1,034일 남음
      */
     public static String dueDateRemainFormat(Date dueDate) {
+        if (dueDate == null) return EMPTY_TEXT;
+
         Date todayDate = new Date();
         long diff = dueDate.getTime() - todayDate.getTime();
         return String.format(
