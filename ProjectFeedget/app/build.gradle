@@ -69,4 +69,8 @@ dependencies {
     //facebook
     compile "com.facebook.android:facebook-android-sdk:$facebook_version"
 
+    //TedBottomPicker
+    compile 'gun0912.ted:tedbottompicker:1.1.0'
+    compile 'gun0912.ted:tedpermission:1.0.3'
+
 }
