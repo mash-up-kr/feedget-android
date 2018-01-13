@@ -213,6 +213,7 @@
 
 
             <LinearLayout
+                android:id="@+id/point_layout"
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
                 android:orientation="horizontal"
@@ -233,6 +234,7 @@
                     android:gravity="center_vertical"
                     android:ems="10"
                     android:inputType="number"
+                    android:text="0"
                     />
 
                 <TextView
@@ -248,6 +250,7 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/point_underBarLine"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/black"
