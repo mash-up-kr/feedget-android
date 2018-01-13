@@ -49,7 +49,6 @@ public class DummyApi /*implements ApiService*/ {
                     dummyCreation.imageUrlList.add("https://fakeimg.pl/200x1000/?text=SampleImage4");
                     dummyCreation.imageUrlList.add("https://fakeimg.pl/500x500/?text=SampleImage5");
 
-                    /*
                     ArrayList<Feedback> feedbackList = new ArrayList<>();
                     for (int i = 0; i < 5; i++) {
                         Feedback feedback = new Feedback();
@@ -64,7 +63,19 @@ public class DummyApi /*implements ApiService*/ {
                         feedback.user = user;
                         feedbackList.add(feedback);
                     }
-                    dummyCreation.feedbackList = feedbackList;*/
+
+                    Feedback feedback = new Feedback();
+                    feedback.createdDate = new Date(System.currentTimeMillis());
+                    feedback.content = "잘 만드신것 같네요 축하드립니다.";
+
+                    User user = new User();
+                    user.name = "본인";
+                    user.userId = "testUserId";
+                    user.profileImageUrl = "";
+
+                    feedback.user = user;
+                    feedbackList.add(feedback);
+                    dummyCreation.feedbackList = feedbackList;
 
                     emitter.onSuccess(dummyCreation);
                 }

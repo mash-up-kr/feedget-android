@@ -1,4 +1,4 @@
-package kr.mashup.feedget.ui.creation.detail;
+package kr.mashup.feedget.ui.creation.detail.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;

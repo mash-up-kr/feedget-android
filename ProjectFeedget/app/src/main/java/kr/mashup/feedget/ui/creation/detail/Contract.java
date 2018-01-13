@@ -16,7 +16,7 @@ public interface Contract {
 
         void initViews();
 
-        void setCreation(Creation creation);
+        void setCreationData(Creation creation);
 
         void setGoneAllCommentView();
 

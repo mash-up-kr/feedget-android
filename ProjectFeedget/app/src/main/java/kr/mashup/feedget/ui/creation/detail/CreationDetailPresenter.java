@@ -1,9 +1,5 @@
 package kr.mashup.feedget.ui.creation.detail;
 
-import android.util.Log;
-
-import org.w3c.dom.Comment;
-
 import java.util.ArrayList;
 
 import kr.mashup.feedget.model.dummy.Feedback;
@@ -39,7 +35,7 @@ public class CreationDetailPresenter implements Contract.Presenter {
         // TODO : 더미데이터가 아닌 실 데이터를 부르도록 수정
         DummyApi.getInstance().getCreationDetail(creationId).subscribe(
                 creation -> {
-                    view.setCreation(creation);
+                    view.setCreationData(creation);
 
                     setFeedbackData(creation.feedbackList);
                 }
