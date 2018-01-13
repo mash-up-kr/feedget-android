@@ -172,14 +172,15 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingTop="19dp">
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:paddingBottom="20dp"
+                            android:paddingTop="20dp">
 
                             <ImageView
                                 android:layout_width="20dp"
@@ -225,6 +226,7 @@
                                 android:id="@+id/comment_list"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:nestedScrollingEnabled="false"
                                 android:visibility="gone" />
 
                         </FrameLayout>
