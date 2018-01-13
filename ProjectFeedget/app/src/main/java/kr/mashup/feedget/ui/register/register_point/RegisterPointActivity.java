@@ -1,15 +1,22 @@
 package kr.mashup.feedget.ui.register.register_point;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +27,7 @@ import kr.mashup.feedget.databinding.ActivityRegisterPointBinding;
 import kr.mashup.feedget.ui.base.BaseActivity;
 import kr.mashup.feedget.ui.base.View;
 import kr.mashup.feedget.ui.register.CreationData;
+import kr.mashup.feedget.ui.register.register_content.SoftKeyboard;
 
 import static kr.mashup.feedget.ui.register.register_content.RegisterActivity.REGISTER_REQUEST;
 
@@ -28,6 +36,7 @@ import static kr.mashup.feedget.ui.register.register_content.RegisterActivity.RE
  */
 
 public class RegisterPointActivity extends BaseActivity<Contract.Presenter> implements Contract.View {
+
 
     //  단순 포인트 확인 용
     private int userPoint = 1800;
@@ -84,6 +93,8 @@ public class RegisterPointActivity extends BaseActivity<Contract.Presenter> impl
         });
 
         binding.textViewMyPoint.setText(Integer.toString(userPoint));
+
+        editTextPointChecker();
     }
 
     private void finishAlert() {
@@ -157,5 +168,42 @@ public class RegisterPointActivity extends BaseActivity<Contract.Presenter> impl
         setPointBar(Integer.parseInt(point));
         tmp_point = view;
     }
+
+    private void editTextPointChecker(){
+        binding.EditTextSetPointBar.addTextChangedListener(new TextWatcher(){
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//              현재 값을 완전히 지우면 앱이 죽음 ㅠㅠ
+                if(s.length() != 0) {
+                    int point = Integer.parseInt(s.toString());
+                    if (point > userPoint) {
+                        Toast.makeText(RegisterPointActivity.this, "보유하신 포인트를 초과하였습니다.", Toast.LENGTH_SHORT).show();
+                        binding.EditTextSetPointBar.setText(Integer.toString(userPoint));
+                    }
+                }else{
+                    binding.EditTextSetPointBar.setText("0");
+                }
+
+            }
+
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (toString() != "0"){
+                    Toast.makeText(RegisterPointActivity.this, "메이데이메이데이", Toast.LENGTH_SHORT).show();
+                    binding.pointUnderBarLine.setBackgroundColor(R.color.dodger_blue);
+                }
+
+            }
+        });
+    }
+
+
 
 }
