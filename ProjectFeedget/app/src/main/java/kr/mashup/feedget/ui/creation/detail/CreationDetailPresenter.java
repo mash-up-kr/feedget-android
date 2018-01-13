@@ -2,6 +2,11 @@ package kr.mashup.feedget.ui.creation.detail;
 
 import android.util.Log;
 
+import org.w3c.dom.Comment;
+
+import java.util.ArrayList;
+
+import kr.mashup.feedget.model.dummy.Feedback;
 import kr.mashup.feedget.util.DummyApi;
 import kr.mashup.feedget.util.IntentKey;
 
@@ -15,9 +20,19 @@ public class CreationDetailPresenter implements Contract.Presenter {
 
     @Override
     public void init() {
-        requestCreationDetail(
-                view.getIntent().getStringExtra(IntentKey.INTENT_KEY_CREATION_ID)
-        );
+        view.initViews();
+
+        requestCreationDetail(getUserId());
+    }
+
+    @Override
+    public String getUserId() {
+        return view.getIntent().getStringExtra(IntentKey.INTENT_KEY_USER_ID);
+    }
+
+    @Override
+    public String getCreationId() {
+        return view.getIntent().getStringExtra(IntentKey.INTENT_KEY_CREATION_ID);
     }
 
     private void requestCreationDetail(String creationId) {
@@ -25,7 +40,38 @@ public class CreationDetailPresenter implements Contract.Presenter {
         DummyApi.getInstance().getCreationDetail(creationId).subscribe(
                 creation -> {
                     view.setCreation(creation);
+
+                    setFeedbackData(creation.feedbackList);
                 }
         );
+    }
+
+    private void setFeedbackData(ArrayList<Feedback> feedbackList) {
+        if (isFeedbackEmpty(feedbackList)) {
+            view.setVisibleNoCommentView();
+        }
+        else if (isMyFeedbackExist(feedbackList) == false) {
+            view.setVisibleBeforeCommentView();
+        }
+        else {
+            view.setVisibleCommentView();
+        }
+    }
+
+    private boolean isFeedbackEmpty(ArrayList<Feedback> feedbackList) {
+        return feedbackList == null || feedbackList.isEmpty();
+    }
+
+    private boolean isMyFeedbackExist(ArrayList<Feedback> feedbackList) {
+        boolean isMyFeedbackExist = false;
+
+        for (Feedback feedback : feedbackList) {
+            if (feedback.user.userId.equals(getUserId())) {
+                isMyFeedbackExist = true;
+                break;
+            }
+        }
+
+        return isMyFeedbackExist;
     }
 }

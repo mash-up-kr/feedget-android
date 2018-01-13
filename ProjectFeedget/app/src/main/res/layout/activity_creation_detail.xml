@@ -129,12 +129,12 @@
                             android:textColor="@color/black"
                             android:textSize="14dp" />
 
-                        <ImageView
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/creation_image_pager"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="317dp"
                             android:layout_marginTop="16dp"
-                            android:background="@color/gray"
-                            android:minHeight="200dp" />
+                            android:background="@color/gray" />
 
                         <!-- 작성일 -->
                         <LinearLayout
@@ -209,93 +209,23 @@
                             android:layout_height="wrap_content">
 
                             <!-- 댓글 없을때 -->
-                            <FrameLayout
+                            <include
                                 android:id="@+id/view_no_comment"
-                                android:layout_width="match_parent"
-                                android:layout_height="200dp"
-                                android:visibility="gone">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="48dp"
-                                        android:layout_height="44dp"
-                                        android:src="@drawable/icon_comment_white" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:text="아직 평가가 없어요"
-                                        android:textColor="@color/black"
-                                        android:textSize="12dp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="6dp"
-                                        android:text="첫 번째 평가를 작성해 볼까요?"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-                                </LinearLayout>
-
-                            </FrameLayout>
+                                layout="@layout/view_no_comment"
+                                android:visibility="gone" />
 
                             <!-- 댓글 달기 전 -->
-                            <FrameLayout
+                            <include
                                 android:id="@+id/view_before_comment"
-                                android:layout_width="match_parent"
-                                android:layout_height="200dp"
-                                android:background="@color/black_03">
-
-                                <ImageView
-                                    android:layout_width="70dp"
-                                    android:layout_height="47dp"
-                                    android:layout_gravity="right|top"
-                                    android:src="@drawable/icon_before_comment_edge" />
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="48dp"
-                                        android:layout_height="44dp"
-                                        android:src="@drawable/icon_comment_white" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="20dp"
-                                        android:text="내 피드백을 남기면 다른 유저의 피드백을 볼 수 있어요."
-                                        android:textColor="@color/black"
-                                        android:textSize="12dp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="6dp"
-                                        android:text="나도 피드백에 참여해볼까요?"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-                                </LinearLayout>
-
-                            </FrameLayout>
+                                layout="@layout/view_before_comment"
+                                android:visibility="gone" />
 
                             <!-- 댓글 목록 -->
                             <android.support.v7.widget.RecyclerView
+                                android:id="@+id/comment_list"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:visibility="gone" />
 
                         </FrameLayout>
 
@@ -308,27 +238,51 @@
             <!-- 피드백 입력 -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp">
+                android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:background="@color/gray" />
-
-                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:background="@null"
-                    android:hint="피드백을 입력해주세요."
-                    android:maxLines="3"
-                    android:textColor="@color/black"
-                    android:textSize="14dp" />
+                    android:layout_height="16dp"
+                    android:src="@drawable/shadow_comment_top" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/icon_image" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="피드백을 입력해주세요."
+                        android:maxLines="3"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/submit_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="등록"
+                        android:textColor="@color/black_50" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
