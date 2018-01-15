@@ -103,6 +103,13 @@
                             android:textColor="@color/black"
                             android:textSize="12dp" />
 
+                        <ImageView
+                            android:id="@+id/view_more"
+                            android:layout_width="4dp"
+                            android:layout_height="16dp"
+                            android:layout_marginLeft="18dp"
+                            android:src="@drawable/icon_view_more" />
+
                     </LinearLayout>
 
                     <View
@@ -285,6 +292,12 @@
                         android:textColor="@color/black_50" />
 
                 </LinearLayout>
+
+                <!-- 이미지 선택 -->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/gallery_image_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
 
             </LinearLayout>
 

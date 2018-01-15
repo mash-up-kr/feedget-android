@@ -1,14 +1,21 @@
 package kr.mashup.feedget.ui.creation.detail;
 
+import android.Manifest;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import java.util.ArrayList;
 
+import gun0912.tedbottompicker.GridSpacingItemDecoration;
+import gun0912.tedbottompicker.TedBottomPicker;
+import gun0912.tedbottompicker.adapter.GalleryAdapter;
 import kr.mashup.feedget.R;
 import kr.mashup.feedget.databinding.ActivityCreationDetailBinding;
 import kr.mashup.feedget.model.dummy.Creation;
@@ -24,6 +31,10 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
 
     private CreationImagePagerAdapter imagePagerAdapter;
     private CreationFeedbackAdapter feedbackAdapter;
+    private GalleryAdapter galleryAdapter;
+
+    private final int SPAN_COUNT_GALLERY_LIST = 3;
+    private final int MAX_COUNT_GALLERY_SELECT = 3;
 
     @Override
     protected CreationDetailPresenter buildPresenter() {
@@ -36,6 +47,17 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
         binding = DataBindingUtil.setContentView(this, R.layout.activity_creation_detail);
 
         presenter.init();
+
+        requestPermission();
+    }
+
+    //TODO : 퍼미션 요청용 테스트코드 반드시 삭제 요망
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(
+                this,
+                new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE },
+                1
+        );
     }
 
     @Override
@@ -52,6 +74,7 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
         initCreationImagesView();
         initFeedbackInputView();
         initFeedbackListView();
+        initGalleryListView();
     }
 
     private void initCreationImagesView() {
@@ -70,6 +93,50 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
 
         binding.commentList.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         binding.commentList.setAdapter(feedbackAdapter);
+    }
+
+    private void initGalleryListView() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getBaseContext(), SPAN_COUNT_GALLERY_LIST);
+        binding.galleryImageList.setLayoutManager(gridLayoutManager);
+        binding.galleryImageList.addItemDecoration(
+                new GridSpacingItemDecoration(
+                        gridLayoutManager.getSpanCount(),
+                        16,
+                        false
+                )
+        );
+
+        TedBottomPicker.Builder builder = new TedBottomPicker.Builder(getBaseContext())
+                .setOnMultiImageSelectedListener(
+                        uriList -> {
+
+                        }
+                ).setSelectMaxCount(MAX_COUNT_GALLERY_SELECT);
+
+        galleryAdapter = new GalleryAdapter(
+                getBaseContext(),
+                builder
+        );
+        binding.galleryImageList.setAdapter(galleryAdapter);
+        galleryAdapter.setOnItemClickListener((view, position) -> {
+
+            GalleryAdapter.PickerTile pickerTile = galleryAdapter.getItem(position);
+/*
+            switch (pickerTile.getTileType()) {
+                case GalleryAdapter.PickerTile.CAMERA:
+                    startCameraIntent();
+                    break;
+                case GalleryAdapter.PickerTile.GALLERY:
+                    startGalleryIntent();
+                    break;
+                case GalleryAdapter.PickerTile.IMAGE:
+                    complete(pickerTile.getImageUri());
+                    break;
+                default:
+                    errorMessage();
+            }*/
+
+        });
     }
 
     @Override

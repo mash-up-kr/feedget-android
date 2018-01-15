@@ -46,6 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
@@ -95,6 +96,11 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <ImageView
+                    android:layout_width="4dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/icon_view_more" />
 
             </LinearLayout>
 
