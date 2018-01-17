@@ -12,7 +12,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/img_profile"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginBottom="8dp"
@@ -34,29 +35,29 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/profile_sample" />
+                app:srcCompat="@drawable/group_2" />
 
             <TextView
                 android:id="@+id/textView"
+                android:text="비공개"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="56dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginTop="8dp"
-                android:text="abcd"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_profile"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.555" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/duedate"
+                android:text="10일 남음"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
-                android:text="10일 남음"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -64,6 +65,7 @@
 
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/image"
             android:textColor="#000000"
             android:layout_width="match_parent"
@@ -72,49 +74,61 @@
             android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <FrameLayout
-            android:layout_marginTop="16dp"
+        <android.support.constraint.ConstraintLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:padding="1dp">
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
             <TextView
-                android:text=" 100 "
+                android:id="@+id/point"
+                android:text="100"
+                android:textColor="@color/white"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginStart="16dp"
                 android:letterSpacing="0.04"
                 android:background="@drawable/button_stroke"
                 android:textSize="12sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{creation.title}"
                 android:textSize="16sp"
                 android:textColor="#000000"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp" />
-        </FrameLayout>
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toEndOf="@+id/point"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/content"/>
 
-        <TextView
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@{creation.description}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="3"
-            android:maxLength="100"
-            android:ellipsize="end"
-            />
+            <TextView
+                android:id="@+id/content"
+                android:layout_marginTop="8dp"
+                android:text="@{creation.description}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:maxLength="100"
+                android:ellipsize="end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+
 
         <View
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
             android:background="#d8d8d8"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
@@ -127,12 +141,12 @@
             android:layout_height="48dp">
 
             <ImageView
-                android:src="@drawable/oval_2_copy_5"
+                android:src="@drawable/bubble"
                 android:layout_width="20dp"
                 android:layout_height="18dp" />
 
             <TextView
-                android:text="평가"
+                android:text="피드백"
                 android:layout_marginStart="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -140,7 +154,7 @@
             <TextView
                 android:text="@{String.valueOf(creation.feedbackCount)}"
                 android:layout_marginStart="4dp"
-                android:textColor="@color/dodger_blue"
+                android:textColor="#f27900"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
