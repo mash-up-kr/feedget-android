@@ -1,7 +1,8 @@
-package kr.mashup.feedget.ui.main.tabs.creation;
+package kr.mashup.feedget.ui.main.feed.tabs.creation;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +33,23 @@ public class CreationFragment extends BaseFragment<Contract.Presenter> implement
         binding = (FragmentMainCreationBinding) createView(inflater, R.layout.fragment_main_creation, container);
 
         init();
+
         return binding.getRoot();
     }
 
     private void init(){
-        presenter.initRecyclerView(binding.recyclerView);
+        presenter.initRecyclerView(binding.recyclerView, binding.write);
 
+        presenter.setWriteClickEvent(binding.write);
         presenter.requestCreationList(category);
     }
+
+
+    @Override
+    public FragmentManager getSupportFragmentManager() {
+        return getFragmentManager();
+    }
+
+
+
 }

@@ -1,4 +1,4 @@
-package kr.mashup.feedget.ui.main.tabs.creation;
+package kr.mashup.feedget.ui.main.feed.tabs.creation;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
