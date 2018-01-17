@@ -50,9 +50,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MyPageActivity"></activity>
-        <activity android:name=".TimelineActivity">
 
-        </activity>
     </application>
 
 </manifest>
