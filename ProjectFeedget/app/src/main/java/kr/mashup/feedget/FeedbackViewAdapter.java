@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import kr.mashup.feedget.model.Creation;
+
 /**
  * Created by ichaeeun on 2017. 11. 5..
  */
@@ -23,7 +25,6 @@ public class FeedbackViewAdapter extends RecyclerView.Adapter<FeedbackViewHolder
     public FeedbackViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_feedback, parent,false);
         FeedbackViewHolder viewHolder = new FeedbackViewHolder(itemView);
-
         return viewHolder;
     }
 
