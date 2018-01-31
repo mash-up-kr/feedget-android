@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
-import kr.mashup.feedget.ui.main.tabs.creation.CreationFragment;
+import kr.mashup.feedget.ui.main.feed.tabs.creation.CreationFragment;
 
 public class MyPageActivity extends AppCompatActivity {
 

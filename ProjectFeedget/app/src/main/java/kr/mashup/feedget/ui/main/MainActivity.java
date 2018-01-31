@@ -1,57 +1,60 @@
 package kr.mashup.feedget.ui.main;
 
-import android.content.Context;
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
-import kr.mashup.feedget.MyPageActivity;
+import kr.mashup.feedget.EmptyFragment;
 import kr.mashup.feedget.R;
-import kr.mashup.feedget.databinding.ActivityMainBinding;
-import kr.mashup.feedget.ui.base.BaseActivity;
+import kr.mashup.feedget.ui.main.feed.FeedFragment;
 
-public final class MainActivity extends BaseActivity<Contract.Presenter> implements Contract.View {
+/**
+ * Created by ichaeeun on 2018. 1. 6..
+ */
 
-    private ActivityMainBinding binding;
+public class MainActivity extends AppCompatActivity {
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+                switch (item.getItemId()) {
+
+                    case R.id.feed:
+                        FeedFragment feedFragment = new FeedFragment();
+                        FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction1.replace(R.id.container, feedFragment);
+                        fragmentTransaction1.commit();
+                        return true;
+                    case R.id.alarm:
+                        Fragment emptyFragment = new Fragment();
+                        FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction2.replace(R.id.container, emptyFragment);
+                        fragmentTransaction2.commit();
+                        return true;
+                    case R.id.myPage:
+                        Fragment emptyFragment2 = new Fragment();
+                        FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction3.replace(R.id.container, emptyFragment2);
+                        fragmentTransaction3.commit();
+                        return true;
+                }
+                return false;
+            };
 
     @Override
-    protected MainPresenter buildPresenter() {
-        return new MainPresenter(this);
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-        init();
-    }
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-    private void init() {
-        presenter.initTabPager(binding.pager, binding.tab);
-        presenter.setWriteClickEvent(binding.write);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-        setUpToolbar();
-    }
-
-    private void setUpToolbar() {
-        setSupportActionBar(binding.toolbar.toolbar);
-
-//        binding.toolbar.toolbar.setTitle(R.string.app_name);
-        binding.toolbar.searchButton.setOnClickListener(__ -> {
-            startMyPageActivity();
-        });
-    }
-
-    private void startMyPageActivity() {
-        Intent intent = new Intent(getContext(), MyPageActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public Context getContext() {
-        return getBaseContext();
+        FeedFragment feedFragment = new FeedFragment();
+        fragmentTransaction.replace(R.id.container, feedFragment);
+        fragmentTransaction.commit();
     }
 
 }
