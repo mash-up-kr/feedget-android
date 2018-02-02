@@ -1,35 +1,23 @@
 package kr.mashup.feedget.ui.register.register_point;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.Serializable;
 
 import kr.mashup.feedget.R;
 import kr.mashup.feedget.databinding.ActivityRegisterPointBinding;
 import kr.mashup.feedget.ui.base.BaseActivity;
-import kr.mashup.feedget.ui.base.View;
 import kr.mashup.feedget.ui.register.CreationData;
-import kr.mashup.feedget.ui.register.register_content.SoftKeyboard;
-
-import static kr.mashup.feedget.ui.register.register_content.RegisterActivity.REGISTER_REQUEST;
 
 /**
  * Created by eastroots92 on 2017-12-23.
