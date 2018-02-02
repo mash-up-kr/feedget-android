@@ -27,7 +27,7 @@ class DummyDataService : FeedGetService {
                 listOf(
                     Creation(
                         "1",
-                        "이것은 타이틀",
+                        "이것은 타이틀이 맞습니다",
                         "이것은 세부 사항",
                         Date().time,
                         null,

@@ -7,6 +7,7 @@ import kr.mashup.feedget.injection.component.SplashActivitySubComponent
 import kr.mashup.feedget.ui.splash.SplashActivity
 import kr.mashup.feedget.injection.scopes.PerActivity
 import kr.mashup.feedget.ui.intro.IntroActivity
+import kr.mashup.feedget.ui.main.MainActivity
 
 
 @Module(subcomponents = arrayOf(IntroActivitySubComponent::class, SplashActivitySubComponent::class))
@@ -19,4 +20,8 @@ abstract class ActivityModule {
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(IntroActivityModule::class))
     abstract fun bindIntroActivity(): IntroActivity
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = arrayOf(FeedFragmentProvider::class))
+    abstract fun bindMainActivity(): MainActivity
 }
