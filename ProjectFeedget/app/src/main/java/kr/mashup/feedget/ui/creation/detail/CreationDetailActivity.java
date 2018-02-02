@@ -1,17 +1,25 @@
 package kr.mashup.feedget.ui.creation.detail;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import gun0912.tedbottompicker.GridSpacingItemDecoration;
 import gun0912.tedbottompicker.TedBottomPicker;
@@ -24,6 +32,9 @@ import kr.mashup.feedget.ui.base.BaseActivity;
 import kr.mashup.feedget.ui.creation.detail.adapter.CreationFeedbackAdapter;
 import kr.mashup.feedget.ui.creation.detail.adapter.CreationImagePagerAdapter;
 import kr.mashup.feedget.util.IntentKey;
+
+import static kr.mashup.feedget.ui.creation.detail.CreationDetailPresenter.REQ_CODE_CAMERA;
+import static kr.mashup.feedget.ui.creation.detail.CreationDetailPresenter.REQ_CODE_GALLERY;
 
 public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter> implements Contract.View {
 
@@ -55,7 +66,7 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
     private void requestPermission() {
         ActivityCompat.requestPermissions(
                 this,
-                new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE },
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                 1
         );
     }
@@ -121,7 +132,7 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
         galleryAdapter.setOnItemClickListener((view, position) -> {
 
             GalleryAdapter.PickerTile pickerTile = galleryAdapter.getItem(position);
-/*
+
             switch (pickerTile.getTileType()) {
                 case GalleryAdapter.PickerTile.CAMERA:
                     startCameraIntent();
@@ -133,10 +144,48 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
                     complete(pickerTile.getImageUri());
                     break;
                 default:
-                    errorMessage();
-            }*/
+                    throw new RuntimeException("알 수 없는 type : " + pickerTile.getTileType());
+            }
 
         });
+    }
+
+    private void startGalleryIntent() {
+        Intent galleryIntent;
+        Uri uri;
+        galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        galleryIntent.setType("image/*");
+
+        startActivityForResult(galleryIntent, REQ_CODE_GALLERY);
+    }
+
+    private void startCameraIntent() {
+        Intent cameraInent;
+        File mediaFile;
+
+        cameraInent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        mediaFile = presenter.getImageFile();
+
+        Uri photoURI = FileProvider.getUriForFile(getContext(), getContext().getApplicationContext().getPackageName() + ".provider", mediaFile);
+
+        List<ResolveInfo> resolvedIntentActivities = getContext().getPackageManager().queryIntentActivities(cameraInent, PackageManager.MATCH_DEFAULT_ONLY);
+        for (ResolveInfo resolvedIntentInfo : resolvedIntentActivities) {
+            String packageName = resolvedIntentInfo.activityInfo.packageName;
+            getContext().grantUriPermission(packageName, photoURI, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+
+        cameraInent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+        startActivityForResult(cameraInent, REQ_CODE_CAMERA);
+
+    }
+
+    private void complete(final Uri uri) {
+        /*
+        if (selectedUriList.contains(uri)) {
+            removeImage(uri);
+        } else {
+            addUri(uri);
+        }*/
     }
 
     @Override
@@ -175,6 +224,11 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
     @Override
     public void setVisibleCommentView() {
         binding.commentList.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public Context getContext() {
+        return getBaseContext();
     }
 
 }
