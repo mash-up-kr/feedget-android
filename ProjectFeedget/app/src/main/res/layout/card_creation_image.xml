@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="image"
+            type="String" />
+    </data>
+
+    <ImageView
+        android:id="@+id/image_creation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="300dp"
+        android:background="@color/gray"
+        android:minHeight="200dp"
+        android:scaleType="centerCrop"
+        bind:imageUrl="@{image}" />
+
+</layout>

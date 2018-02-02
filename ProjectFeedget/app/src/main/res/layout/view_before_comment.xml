@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <FrameLayout
+        android:id="@+id/view_before_comment"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/black_03">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="47dp"
+            android:layout_gravity="right|top"
+            android:src="@drawable/icon_before_comment_edge" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="44dp"
+                android:src="@drawable/icon_comment_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="내 피드백을 남기면 다른 유저의 피드백을 볼 수 있어요."
+                android:textColor="@color/black"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="나도 피드백에 참여해볼까요?"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>
