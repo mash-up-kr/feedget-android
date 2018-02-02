@@ -1,57 +1,103 @@
 package kr.mashup.feedget.ui.main;
 
-import android.content.Context;
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-import kr.mashup.feedget.MyPageActivity;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
+import io.reactivex.observers.DisposableSingleObserver;
+import kotlin.Pair;
+import kr.mashup.feedget.EmptyFragment;
 import kr.mashup.feedget.R;
-import kr.mashup.feedget.databinding.ActivityMainBinding;
-import kr.mashup.feedget.ui.base.BaseActivity;
+import kr.mashup.feedget.domain.interactor.usecases.GetCategories;
+import kr.mashup.feedget.domain.interactor.usecases.GetCreations;
+import kr.mashup.feedget.domain.interactor.usecases.Register;
+import kr.mashup.feedget.entity.Category;
+import kr.mashup.feedget.entity.Creation;
+import kr.mashup.feedget.entity.SignIn;
+import kr.mashup.feedget.ui.main.feed.FeedFragment;
 
-public final class MainActivity extends BaseActivity<Contract.Presenter> implements Contract.View {
+/**
+ * Created by ichaeeun on 2018. 1. 6..
+ */
 
-    private ActivityMainBinding binding;
+public class MainActivity extends AppCompatActivity implements HasSupportFragmentInjector  {
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
+
+    @Inject
+    GetCreations getCreations;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+        switch (item.getItemId()) {
+
+            case R.id.feed:
+                FeedFragment feedFragment = new FeedFragment();
+                FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction1.replace(R.id.container, feedFragment);
+                fragmentTransaction1.commit();
+                return true;
+            case R.id.alarm:
+                Fragment emptyFragment = new Fragment();
+                FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction2.replace(R.id.container, emptyFragment);
+                fragmentTransaction2.commit();
+                return true;
+            case R.id.myPage:
+                Fragment emptyFragment2 = new Fragment();
+                FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction3.replace(R.id.container, emptyFragment2);
+                fragmentTransaction3.commit();
+                return true;
+        }
+        return false;
+    };
 
     @Override
-    protected MainPresenter buildPresenter() {
-        return new MainPresenter(this);
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        setContentView(R.layout.activity_main);
+        AndroidInjection.inject(this);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        init();
-    }
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-    private void init() {
-        presenter.initTabPager(binding.pager, binding.tab);
-        presenter.setWriteClickEvent(binding.write);
+        FeedFragment feedFragment = new FeedFragment();
+        fragmentTransaction.replace(R.id.container, feedFragment);
+        fragmentTransaction.commit();
 
-        setUpToolbar();
-    }
+        getCreations.execute(new DisposableSingleObserver<Pair<? extends Long, ? extends List<? extends Creation>>>() {
+            @Override
+            public void onSuccess(Pair<? extends Long, ? extends List<? extends Creation>> pair) {
+                Long s = pair.component1();
+                List<Creation> list = (List<Creation>) pair.component2();
+                for (Creation item : list) {
+                    Log.e("item", item.getTitle());
+                }
+            }
 
-    private void setUpToolbar() {
-        setSupportActionBar(binding.toolbar.toolbar);
-
-        binding.toolbar.toolbar.setTitle(R.string.app_name);
-        binding.toolbar.rightButton.setOnClickListener(__ -> {
-            startMyPageActivity();
-        });
-    }
-
-    private void startMyPageActivity() {
-        Intent intent = new Intent(getContext(), MyPageActivity.class);
-        startActivity(intent);
+            @Override
+            public void onError(Throwable e) {
+                e.printStackTrace();
+            }
+        }, new GetCreations.Params("", "", ""));
     }
 
     @Override
-    public Context getContext() {
-        return getBaseContext();
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return fragmentDispatchingAndroidInjector;
     }
-
 }

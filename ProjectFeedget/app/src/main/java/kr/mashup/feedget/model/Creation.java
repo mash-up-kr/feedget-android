@@ -8,6 +8,8 @@ public class Creation implements Serializable {
     public String description;
     public int feedbackCount;
     public String title;
+    public String duedate;
+
 
     public Creation(){
 
