@@ -17,7 +17,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/inputForm"
+                android:id="@+id/contentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -26,7 +26,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="@dimen/dropShadow_height"
                     android:background="@drawable/drop_shadow"
                     />
 
@@ -37,37 +37,38 @@
                     android:orientation="horizontal">
 
                     <EditText
+                        android:id="@+id/editText_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="제목"
+                        android:hint="@string/register_title"
                         android:lines="1"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="12dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
+                        android:paddingTop="@dimen/padding_default"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:paddingLeft="@dimen/padding_default"
+                        android:paddingRight="@dimen/padding_default"
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="@dimen/textSize_default" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_height="@dimen/height_1"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:background="@color/divider" />
 
                 <EditText
-                    android:id="@+id/et_contentForm"
+                    android:id="@+id/editText_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:gravity="top"
-                    android:hint="본문을 입력해주세요."
-                    android:padding="16dp"
+                    android:hint="@string/register_content"
+                    android:padding="@dimen/padding_default"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/textSize_default" />
 
 
 
@@ -88,7 +89,7 @@
                     android:id="@+id/iv_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
+                    android:padding="@dimen/padding_default"
                     />
 
                 <HorizontalScrollView
@@ -124,16 +125,16 @@
         <LinearLayout
             android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_40"
             android:background="@color/lightgray"
             android:weightSum="1"
             style="@android:style/ButtonBar"
             >
 
             <ImageView
-                android:id="@+id/iv_imageBtn"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:id="@+id/imageView_imageButton"
+                android:layout_width="@dimen/width_20"
+                android:layout_height="@dimen/height_20"
                 android:src="@drawable/icon_gallery" />
 
 

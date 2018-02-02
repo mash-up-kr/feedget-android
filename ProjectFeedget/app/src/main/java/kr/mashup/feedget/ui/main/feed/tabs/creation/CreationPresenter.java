@@ -11,8 +11,8 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import kr.mashup.feedget.model.Creation;
-import kr.mashup.feedget.ui.register.RegisterActivity;
+import kr.mashup.feedget.model.dummy.Creation;
+import kr.mashup.feedget.ui.register.register_content.RegisterActivity;
 
 public class CreationPresenter implements Contract.Presenter {
 

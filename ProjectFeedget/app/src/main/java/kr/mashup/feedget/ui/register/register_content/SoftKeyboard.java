@@ -1,4 +1,4 @@
-package kr.mashup.feedget.ui.register;
+package kr.mashup.feedget.ui.register.register_content;
 
 import android.os.Handler;
 import android.os.Message;
@@ -17,7 +17,7 @@ public class SoftKeyboard implements View.OnFocusChangeListener
 
     private ViewGroup layout;
     private int layoutBottom;
-    private InputMethodManager im;
+    private InputMethodManager inputManager;
     private int[] coords;
     private boolean isKeyboardShow;
     private SoftKeyboardChangesThread softKeyboardThread;
@@ -25,12 +25,12 @@ public class SoftKeyboard implements View.OnFocusChangeListener
 
     private View tempView; // reference to a focused EditText
 
-    public SoftKeyboard(ViewGroup layout, InputMethodManager im)
+    public SoftKeyboard(ViewGroup layout, InputMethodManager inputManager)
     {
         this.layout = layout;
         keyboardHideByDefault();
         initEditTexts(layout);
-        this.im = im;
+        this.inputManager = inputManager;
         this.coords = new int[2];
         this.isKeyboardShow = false;
         this.softKeyboardThread = new SoftKeyboardChangesThread();
@@ -43,7 +43,7 @@ public class SoftKeyboard implements View.OnFocusChangeListener
         if(!isKeyboardShow)
         {
             layoutBottom = getLayoutCoordinates();
-            im.toggleSoftInput(0, InputMethodManager.SHOW_IMPLICIT);
+            inputManager.toggleSoftInput(0, InputMethodManager.SHOW_IMPLICIT);
             softKeyboardThread.keyboardOpened();
             isKeyboardShow = true;
         }
@@ -53,7 +53,7 @@ public class SoftKeyboard implements View.OnFocusChangeListener
     {
         if(isKeyboardShow)
         {
-            im.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+            inputManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
             isKeyboardShow = false;
         }
     }
