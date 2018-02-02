@@ -53,3 +53,11 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
+
+\.idea/encodings\.xml
+
+\.idea/misc\.xml
+
+\.idea/modules\.xml
+
+\.idea/vcs\.xml
