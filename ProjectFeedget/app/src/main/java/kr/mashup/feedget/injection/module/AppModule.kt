@@ -4,18 +4,16 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import kr.mashup.feedget.BuildConfig
 import kr.mashup.feedget.data.executor.JobExecutor
 import kr.mashup.feedget.data.repository.*
-import kr.mashup.feedget.injection.scopes.PerApplication
 import kr.mashup.feedget.domain.executor.PostExecutionThread
 import kr.mashup.feedget.domain.executor.ThreadExecutor
 import kr.mashup.feedget.domain.interactor.usecases.*
 import kr.mashup.feedget.domain.repository.*
-import kr.mashup.feedget.dummy.DummyDataService
+import kr.mashup.feedget.injection.scopes.PerApplication
 import kr.mashup.feedget.remote.FeedGetService
-import kr.mashup.feedget.remote.FeedgetServiceFactory
 import kr.mashup.feedget.remote.TokenProvider
+import kr.mashup.feedget.remote.dummy.DummyDataService
 import kr.mashup.feedget.repository.PrefsDataStore
 import kr.mashup.feedget.ui.UiThread
 
@@ -34,7 +32,7 @@ open class AppModule {
     @Provides
     @PerApplication
     internal fun provideFeegetService(tokenProvider: TokenProvider): FeedGetService =
-        DummyDataService() // 이부분이 더미입니당. 
+        DummyDataService() // 이부분이 더미입니당.
 //        FeedgetServiceFactory.makeFeedGetService(BuildConfig.DEBUG, tokenProvider)
 
     @Provides

@@ -1,14 +1,14 @@
-package kr.mashup.feedget.ui.main;
+package kr.mashup.feedget.ui.main.feed.tabs.creation;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class MainPagerAdapter extends FragmentStatePagerAdapter {
+public class FeedPagerAdapter extends FragmentStatePagerAdapter {
 
     private Fragment[] fragments;
 
-    public MainPagerAdapter(FragmentManager fm) {
+    public FeedPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

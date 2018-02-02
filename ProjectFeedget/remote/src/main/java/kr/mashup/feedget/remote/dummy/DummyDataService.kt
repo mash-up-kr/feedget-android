@@ -1,4 +1,4 @@
-package kr.mashup.feedget.dummy
+package kr.mashup.feedget.remote.dummy
 
 import io.reactivex.Completable
 import io.reactivex.Single
