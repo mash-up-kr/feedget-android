@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            style="@style/AppTheme.PopupOverlay"
+            android:animateLayoutChanges="true">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.Toolbar
+
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize">
+
+                        <ImageButton
+                            android:id="@+id/search_button"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@null"
+                            android:layout_gravity="right"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/icon_search"/>
+
+                    </android.support.v7.widget.Toolbar>
+
+                    <!-- 카테고리 영역 -->
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        app:tabTextColor="#8f8f8f"
+                        android:textSize="24sp"
+                        app:tabSelectedTextColor="#f27900"
+                        android:textAlignment="center"
+                        app:tabMinWidth="65dp"
+                        style="@style/MainTabLayout"
+                        android:background="@color/colorPrimaryDark"
+                        app:tabBackground = "@android:color/transparent"
+                        android:fillViewport="true"
+                        app:tabIndicatorColor="@color/colorPrimaryDark"
+                        app:tabMode="scrollable"
+                        app:paddingStart="2dp"/>
+
+                    <View
+                        android:background="#d8d8d8"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+
+                    <LinearLayout
+                        android:gravity="center_vertical|right"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:elevation="2dp">
+
+                        <Spinner
+                            android:id="@+id/spinner_view_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp">
+
+                        </Spinner>
+
+                        <Spinner
+                            android:id="@+id/spinner_sort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp">
+
+                        </Spinner>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+        </android.support.design.widget.AppBarLayout>
+
+
+
+
+
+
+
+        <!--<android.support.v4.widget.NestedScrollView-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:fillViewport="true"-->
+            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+
+        <!--</android.support.v4.widget.NestedScrollView>-->
+    </LinearLayout>
+</layout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="main_type">
+        <item>자세히</item>
+        <item>간략히</item>
+    </string-array>
+
+    <string-array name="main_sort">
+        <item>최신순</item>
+        <item>마감 빠른 순</item>
+        <item>포인트 많은 순</item>
+        <item>피드백 적은 순</item>
+        <item>피드백 많은 순</item>
+    </string-array>
+
+</resources>
