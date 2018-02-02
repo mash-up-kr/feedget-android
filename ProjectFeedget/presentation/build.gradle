@@ -1,0 +1,8 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    compile project(':domain')
+
+    //di
+    implementation "javax.inject:javax.inject:$javaxInjectVersion"
+}

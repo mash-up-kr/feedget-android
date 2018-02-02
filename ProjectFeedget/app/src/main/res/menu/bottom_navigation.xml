@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">gfg
+
+    <item
+        android:id="@+id/feed"
+        android:title="피드"
+        android:icon="@drawable/ic_feed"
+        app:showAsAction="always"
+        android:enabled="true"/>
+
+    <item
+        android:id="@+id/alarm"
+        android:title="알림"
+        android:icon="@drawable/ic_alarm"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/myPage"
+        android:title="내정보"
+        android:icon="@drawable/ic_mypage"
+        app:showAsAction="always" />
+
+</menu>

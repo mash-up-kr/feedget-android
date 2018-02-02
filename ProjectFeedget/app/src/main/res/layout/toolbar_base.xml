@@ -13,49 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="56dp">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="12dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/icon_arrow_left_back"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{title}"/>
-
-
-            <ImageView
-                android:id="@+id/right_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_marginRight="12dp"
-                android:adjustViewBounds="true"
-                android:paddingBottom="16dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="4dp"
-                android:paddingTop="16dp"
-                android:src="@drawable/icon_user"/>
-
-        </FrameLayout>
-
         <ImageButton
             android:id="@+id/search_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_gravity="right"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="8dp"
             android:background="@null"
-            android:src="@drawable/icon_search"/>
-
+            android:layout_gravity="right"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/icon_search" />
     </android.support.v7.widget.Toolbar>
 
 </layout>

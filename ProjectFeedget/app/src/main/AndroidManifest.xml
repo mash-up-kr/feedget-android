@@ -18,12 +18,16 @@
             android:name="kr.mashup.feedget.WorkActivity"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity android:name=".ui.splash.SplashActivity">
 
-        <activity android:name="kr.mashup.feedget.ui.splash.SplashActivity">
         </activity>
-
-        <activity android:name="kr.mashup.feedget.ui.intro.IntroActivity" />
-        <activity android:name="kr.mashup.feedget.ui.main.MainActivity" />
+        <activity android:name=".ui.intro.IntroActivity" />
+        <activity android:name=".ui.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name="kr.mashup.feedget.ui.register.register_content.RegisterActivity"
@@ -54,13 +58,7 @@
         </activity>
         <activity
             android:name=".ui.creation.detail.CreationDetailActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
