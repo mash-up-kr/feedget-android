@@ -8,6 +8,7 @@ import kr.mashup.feedget.R;
 import kr.mashup.feedget.WorkActivity;
 import kr.mashup.feedget.databinding.CardMainCreationBinding;
 import kr.mashup.feedget.model.dummy.Creation;
+import kr.mashup.feedget.ui.creation.detail.CreationDetailActivity;
 
 public class CreationViewHolder extends RecyclerView.ViewHolder {
 
@@ -40,7 +41,7 @@ public class CreationViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void startWorkActivity() {
-        Intent intent = new Intent(binding.getRoot().getContext(), WorkActivity.class);
+            Intent intent = new Intent(binding.getRoot().getContext(), CreationDetailActivity.class);
         binding.getRoot().getContext().startActivity(intent);
     }
 

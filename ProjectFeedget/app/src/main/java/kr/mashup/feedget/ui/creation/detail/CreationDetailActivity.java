@@ -97,6 +97,9 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
     private void initFeedbackInputView() {
         binding.submitComment.setOnClickListener(__ -> {
         });
+        binding.feedbackImage.setOnClickListener(__ -> {
+            binding.galleryImageList.setVisibility(View.VISIBLE);
+        });
     }
 
     private void initFeedbackListView() {
