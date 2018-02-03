@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FeedGet</string>
+    <string name="app_name">comento</string>
 
     <string name="register_title">제목</string>
     <string name="register_content">본문을 입력해주세요.</string>
