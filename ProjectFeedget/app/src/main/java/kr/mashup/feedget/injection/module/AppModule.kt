@@ -66,6 +66,11 @@ open class AppModule {
 
     @Provides
     @PerApplication
+    internal fun provideNotificationRepository(apiService: FeedGetService): NotificationRepository =
+            NotificationRemoteDataSource(apiService)
+
+    @Provides
+    @PerApplication
     internal fun provideDeleteCreation(
         creationRepository: CreationRepository,
         contentRepository: ContentRepository,

@@ -2,22 +2,29 @@ package kr.mashup.feedget.ui.main.tabs.news;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 import kr.mashup.feedget.R;
 import kr.mashup.feedget.databinding.FragmentFeedBinding;
 import kr.mashup.feedget.databinding.FragmentNewsBinding;
+import kr.mashup.feedget.domain.interactor.usecases.GetNotifications;
 import kr.mashup.feedget.ui.base.BaseFragment;
 
-public class NewsFragment extends BaseFragment<NewsPresenter> implements Contract.View {
+public class NewsFragment extends BaseFragment<Contract.Presenter> implements Contract.View {
 
     private FragmentNewsBinding binding;
 
+    @Inject
+    protected GetNotifications getNotifications;
+
     @Override
-    protected NewsPresenter buildPresenter() {
+    protected Contract.Presenter buildPresenter() {
         return new NewsPresenter();
     }
 
@@ -34,5 +41,21 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements Contrac
 
     private void init(){
         AndroidSupportInjection.inject(this);
+        presenter.setNotificationRepository(getNotifications);
+
+        initViews();
+
+        presenter.loadNotifications();
+    }
+
+    private void initViews(){
+        initRecyclerView();
+    }
+
+    private void initRecyclerView(){
+        binding.recyclerView.setLayoutManager(
+                new LinearLayoutManager(getContext())
+        );
+        binding.recyclerView.setAdapter(presenter.getNewsAdapter());
     }
 }
