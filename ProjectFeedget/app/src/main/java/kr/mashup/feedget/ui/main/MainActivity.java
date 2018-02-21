@@ -26,6 +26,7 @@ import kr.mashup.feedget.entity.Category;
 import kr.mashup.feedget.entity.Creation;
 import kr.mashup.feedget.entity.SignIn;
 import kr.mashup.feedget.ui.main.feed.FeedFragment;
+import kr.mashup.feedget.ui.main.tabs.news.NewsFragment;
 
 /**
  * Created by ichaeeun on 2018. 1. 6..
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
                 fragmentTransaction1.commit();
                 return true;
             case R.id.alarm:
-                Fragment emptyFragment = new Fragment();
+                NewsFragment emptyFragment = new NewsFragment();
                 FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction2.replace(R.id.container, emptyFragment);
                 fragmentTransaction2.commit();

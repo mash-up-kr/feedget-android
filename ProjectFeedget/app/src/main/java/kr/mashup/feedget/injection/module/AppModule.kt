@@ -169,6 +169,15 @@ open class AppModule {
 
     @Provides
     @PerApplication
+    internal fun provideGetNotifications(
+            notificationRepository: NotificationRepository,
+            threadExecutor: ThreadExecutor,
+            postExecutionThread: PostExecutionThread
+    ): GetNotifications =
+            GetNotifications(notificationRepository, threadExecutor, postExecutionThread)
+
+    @Provides
+    @PerApplication
     internal fun provideThreadExecutor(jobExecutor: JobExecutor): ThreadExecutor = jobExecutor
 
     @Provides

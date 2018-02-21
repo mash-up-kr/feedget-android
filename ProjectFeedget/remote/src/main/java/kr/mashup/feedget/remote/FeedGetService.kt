@@ -2,10 +2,7 @@ package kr.mashup.feedget.remote
 
 import io.reactivex.Completable
 import io.reactivex.Single
-import kr.mashup.feedget.entity.Category
-import kr.mashup.feedget.entity.Creation
-import kr.mashup.feedget.entity.Feedback
-import kr.mashup.feedget.entity.SignIn
+import kr.mashup.feedget.entity.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -168,5 +165,16 @@ interface FeedGetService {
 
     data class RequestRegisterFCM(
         val cloudMsgRegToken: String
+    )
+
+    //Notification
+    @GET("/notifications")
+    fun getNotifications(
+            page:String
+    ): Single<GetNotificationsResponse>
+
+    data class GetNotificationsResponse(
+            val nextPage: Long,
+            val list: List<Notification>
     )
 }
