@@ -255,7 +255,6 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="16dp"
-                    android:id="@+id/feedback_image"
                     android:src="@drawable/shadow_comment_top" />
 
                 <LinearLayout
@@ -266,6 +265,7 @@
                     android:paddingLeft="16dp">
 
                     <ImageView
+                        android:id="@+id/feedback_image"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:src="@drawable/icon_image" />
@@ -299,7 +299,8 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/gallery_image_list"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp" />
+                    android:layout_height="200dp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 
 import java.io.File;
+import java.security.DomainLoadStoreParameter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +97,7 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
 
     private void initFeedbackInputView() {
         binding.submitComment.setOnClickListener(__ -> {
+            binding.galleryImageList.setVisibility(View.GONE);
         });
         binding.feedbackImage.setOnClickListener(__ -> {
             binding.galleryImageList.setVisibility(View.VISIBLE);
