@@ -3,6 +3,7 @@ package kr.mashup.feedget.ui.intro
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.Toast
 import com.facebook.*
 import com.facebook.login.LoginResult
@@ -18,7 +19,8 @@ import javax.inject.Inject
 
 class IntroActivity : AppCompatActivity(), IntroView {
 
-    @Inject lateinit override var presenter: IntroPresenter
+    @Inject
+    lateinit override var presenter: IntroPresenter
 
     private val facebookCallbackManager: CallbackManager by lazy {
         com.facebook.CallbackManager.Factory.create()
@@ -27,8 +29,10 @@ class IntroActivity : AppCompatActivity(), IntroView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
+
         AndroidInjection.inject(this)
-        facebookLoginButton.setReadPermissions(listOf("public_profile"))
+
+        facebookLoginButton.setReadPermissions(listOf("public_profile", "email"))
         facebookLoginButton.registerCallback(facebookCallbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
                 result?.let {
@@ -44,16 +48,15 @@ class IntroActivity : AppCompatActivity(), IntroView {
             override fun onError(error: FacebookException?) {
                 Toast.makeText(this@IntroActivity, error?.message, Toast.LENGTH_SHORT).show()
             }
-
         })
-
-        presenter.initialize(AccessToken.getCurrentAccessToken() != null)
+        presenter.initialize()
     }
 
     override fun requestLoginFB() {
         val request = GraphRequest.newMeRequest(
             AccessToken.getCurrentAccessToken(),
             { jsonObject, response ->
+                Log.e("jsonObject", jsonObject.toString())
                 val name = (jsonObject.get("name") as? String)
                     ?: return@newMeRequest Toast.makeText(this@IntroActivity, "Error", Toast.LENGTH_SHORT).show()
                 val email = (jsonObject.get("email") as? String)

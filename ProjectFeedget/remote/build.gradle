@@ -1,7 +1,7 @@
 apply plugin: 'kotlin'
 
 dependencies {
-    compile project(':entity')
+    compile project(':data')
 
     //di
     implementation "javax.inject:javax.inject:$javaxInjectVersion"

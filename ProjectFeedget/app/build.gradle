@@ -40,7 +40,6 @@ dependencies {
 
     implementation project(':presentation')
     implementation project(':remote')
-    implementation project(':data')
 
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'

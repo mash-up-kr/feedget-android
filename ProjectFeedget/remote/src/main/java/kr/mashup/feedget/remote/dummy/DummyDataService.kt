@@ -72,7 +72,7 @@ class DummyDataService : FeedGetService {
             )
         )
 
-    override fun postCreations(body: FeedGetService.RequestPostCreation): Single<FeedGetService.PostCreationResponse> =
+    override fun postCreations(body: FeedGetService.RequestPostCreations): Single<FeedGetService.PostCreationResponse> =
         Single.just(
             FeedGetService.PostCreationResponse(
                 Creation(

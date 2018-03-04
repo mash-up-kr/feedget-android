@@ -1,16 +1,15 @@
-package kr.mashup.feedget.data.repository
+package kr.mashup.feedget.remote
 
 import io.reactivex.Completable
-import kr.mashup.feedget.domain.repository.ContentRepository
-import kr.mashup.feedget.remote.FeedGetService
+import kr.mashup.feedget.data.repository.ContentRemote
 import java.io.File
 import javax.inject.Inject
 
-class ContentRemoteDataSource (private val api: FeedGetService) : ContentRepository {
+class ContentRemoteImpl @Inject constructor(private val api: FeedGetService) : ContentRemote {
 
     override fun deleteContent(creationId: String, contentIds: List<String>): Completable =
         api.deleteContent(creationId, FeedGetService.RequestDeleteContent(contentIds))
 
-    override fun postContents(creationId: String, type: String, files: List<File>): Completable =
+    override fun postContent(creationId: String, type: String, files: List<File>): Completable =
         api.postContent(creationId, type, FeedGetService.MultiPartBodyPart(files).multiparts())
 }

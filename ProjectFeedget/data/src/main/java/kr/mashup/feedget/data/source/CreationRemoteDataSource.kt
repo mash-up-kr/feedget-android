@@ -1,33 +1,27 @@
-package kr.mashup.feedget.data.repository
+package kr.mashup.feedget.data.source
 
 import io.reactivex.Completable
 import io.reactivex.Single
+import kr.mashup.feedget.data.repository.CreationRemote
 import kr.mashup.feedget.domain.repository.CreationRepository
 import kr.mashup.feedget.entity.Creation
-import kr.mashup.feedget.remote.FeedGetService
 import javax.inject.Inject
 
-class CreationRemoteDataSource (private val api: FeedGetService) : CreationRepository {
+class CreationRemoteDataSource @Inject constructor(private val remote: CreationRemote) : CreationRepository {
 
     override fun getCreations(page: String, cursor: String?, categories: String): Single<Pair<Long, List<Creation>>> =
-        api.getCreations(page, cursor, categories)
-            .map {
-                it.nextPage to it.list
-            }
+        remote.getCreations(page, cursor, categories)
 
     override fun getCreation(creationId: String): Single<Creation> =
-        api.getCreation(creationId)
-            .map { it.item }
+        remote.getCreation(creationId)
 
     override fun postCreation(title: String, description: String, category: String, anonymity: Boolean, rewardPoint: Double): Single<Creation> =
-        api.postCreations(FeedGetService.RequestPostCreation(title, description, category, anonymity, rewardPoint))
-            .map { it.item }
+        remote.postCreations(title, description, category, anonymity, rewardPoint)
 
     override fun patchCreation(creationId: String, title: String?, description: String?, category: String?, anonymity: Boolean?, rewardPoint: Double?): Single<Creation> =
-        api.updateCreation(creationId, FeedGetService.RequestUpdateCreation(title, description, category, anonymity, rewardPoint))
-            .map { it.item }
+        remote.patchCreation(creationId, title, description, category, anonymity, rewardPoint)
 
     override fun deleteCreation(creationId: String): Completable =
-        api.deleteCreation(creationId)
+        remote.deleteCreation(creationId)
 
 }
