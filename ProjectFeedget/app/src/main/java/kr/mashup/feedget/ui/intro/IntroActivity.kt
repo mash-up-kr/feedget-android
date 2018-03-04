@@ -3,7 +3,6 @@ package kr.mashup.feedget.ui.intro
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.widget.Toast
 import com.facebook.*
 import com.facebook.login.LoginResult
@@ -56,7 +55,6 @@ class IntroActivity : AppCompatActivity(), IntroView {
         val request = GraphRequest.newMeRequest(
             AccessToken.getCurrentAccessToken(),
             { jsonObject, response ->
-                Log.e("jsonObject", jsonObject.toString())
                 val name = (jsonObject.get("name") as? String)
                     ?: return@newMeRequest Toast.makeText(this@IntroActivity, "Error", Toast.LENGTH_SHORT).show()
                 val email = (jsonObject.get("email") as? String)

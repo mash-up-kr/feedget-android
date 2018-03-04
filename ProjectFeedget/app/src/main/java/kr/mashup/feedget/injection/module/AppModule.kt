@@ -16,6 +16,7 @@ import kr.mashup.feedget.injection.scopes.PerApplication
 import kr.mashup.feedget.remote.*
 import kr.mashup.feedget.repository.PrefsDataStore
 import kr.mashup.feedget.ui.UiThread
+import kr.mashup.feedget.util.TokenProvider
 
 
 @Module
@@ -27,7 +28,7 @@ open class AppModule {
 
     @Provides
     @PerApplication
-    internal fun provideTokenProvider(context: Context): TokenRepository = kr.mashup.feedget.util.TokenProvider(context)
+    internal fun provideTokenRepository(context: Context): TokenRepository = TokenProvider(context)
 
     @Provides
     @PerApplication
