@@ -170,7 +170,7 @@ interface FeedGetService {
     //Notification
     @GET("/notifications")
     fun getNotifications(
-            page:String
+        @Query("page") page:String
     ): Single<GetNotificationsResponse>
 
     data class GetNotificationsResponse(
