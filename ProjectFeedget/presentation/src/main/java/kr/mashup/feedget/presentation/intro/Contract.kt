@@ -10,7 +10,7 @@ interface IntroView : View<IntroPresenter> {
 
 interface IntroPresenter : Presenter<IntroView> {
 
-    fun initialize(isLogin: Boolean)
+    fun initialize()
     fun onFacebookCallbackSuccess()
     fun onRequestLoginFBSuccess(name: String, email: String, token: String)
 }

@@ -5,13 +5,14 @@ import kr.mashup.feedget.domain.executor.PostExecutionThread
 import kr.mashup.feedget.domain.executor.ThreadExecutor
 import kr.mashup.feedget.domain.interactor.SingleUseCase
 import kr.mashup.feedget.domain.repository.PrefsRepository
+import kr.mashup.feedget.domain.repository.TokenRepository
 import kr.mashup.feedget.domain.repository.UserRepository
 import kr.mashup.feedget.entity.SignIn
 import javax.inject.Inject
 
 class Register @Inject constructor(
     private val userRepository: UserRepository,
-    private val pefsRepository: PrefsRepository,
+    private val tokenRepository: TokenRepository,
     threadExecutor: ThreadExecutor,
     postExecutionThread: PostExecutionThread
 ) : SingleUseCase<SignIn, Register.Params>(
@@ -28,7 +29,7 @@ class Register @Inject constructor(
                 it.oAuthToken,
                 it.oAuthType
             ).doOnSuccess {
-                pefsRepository.setToken(it.accessToken)
+                tokenRepository.token = it.accessToken
             }
         } ?: Single.error(RuntimeException())
 
