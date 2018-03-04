@@ -25,7 +25,7 @@ public class NewsAdapter extends RecyclerView.Adapter{
                 DataBindingUtil.inflate(
                         LayoutInflater.from(parent.getContext()),
                         R.layout.card_news,
-                        null,
+                        parent,
                         false
                 )
         );

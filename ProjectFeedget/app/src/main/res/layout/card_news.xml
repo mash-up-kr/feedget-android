@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="notification"
+            type="kr.mashup.feedget.entity.Notification"/>
+    </data>
+
+    <android.support.design.internal.ForegroundLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:foreground="?android:attr/selectableItemBackground"
         android:padding="16dp">
 
         <ImageView
@@ -22,24 +29,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="내 평가가 채택됬어요!"
+                android:text="@{notification.description}"
                 android:textColor="@color/black"
                 android:textSize="14dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10분전" />
+                android:text="시간정보" />
 
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="채택하기"
+            android:text="@{notification.actionType}"
             android:textColor="@color/pumpkin_orange"
             android:textSize="14dp" />
 
-    </LinearLayout>
+    </android.support.design.internal.ForegroundLinearLayout>
 
 </layout>

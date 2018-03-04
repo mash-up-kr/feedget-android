@@ -20,6 +20,7 @@ import android.view.View;
 import java.io.File;
 import java.security.DomainLoadStoreParameter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import gun0912.tedbottompicker.GridSpacingItemDecoration;
@@ -185,6 +186,7 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
     }
 
     private void complete(final Uri uri) {
+        Log.i("TAG", "click : " + uri);
         /*
         if (selectedUriList.contains(uri)) {
             removeImage(uri);
