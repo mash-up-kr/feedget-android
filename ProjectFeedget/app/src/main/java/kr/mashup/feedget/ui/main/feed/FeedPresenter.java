@@ -1,17 +1,14 @@
 package kr.mashup.feedget.ui.main.feed;
 
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import kr.mashup.feedget.R;
 import kr.mashup.feedget.ui.main.feed.tabs.creation.CreationFragment;
 import kr.mashup.feedget.ui.main.feed.tabs.creation.FeedPagerAdapter;
-import kr.mashup.feedget.ui.register.RegisterActivity;
 
 public class FeedPresenter implements Contract.Presenter {
 

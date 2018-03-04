@@ -3,26 +3,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="@dimen/height_56"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         >
 
         <TextView
-            android:id="@+id/tv_backBtn"
+            android:id="@+id/textView_backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:textSize="@dimen/textSize_default"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:textColor="@color/black"
             android:gravity="center"
-            android:text="취소"
+            android:text="@string/cancel"
             />
 
         <LinearLayout
-            android:id="@+id/tv_categoryBtn"
+            android:id="@+id/textView_categoryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -34,19 +34,19 @@
             >
 
             <TextView
-                android:id="@+id/tv_category"
+                android:id="@+id/textView_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="@dimen/textSize_default"
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="카테고리(필수)"
+                android:text="@string/category_title"
             />
             <ImageView
-                android:id="@+id/tv_categoryArrow"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
+                android:id="@+id/textView_categoryArrow"
+                android:layout_width="@dimen/width_12"
+                android:layout_height="@dimen/height_12"
                 android:layout_gravity="center"
                 android:src="@drawable/icon_arrowdown"/>
 
@@ -57,15 +57,15 @@
 
 
         <TextView
-            android:id="@+id/tv_nextBtn"
+            android:id="@+id/textView_nextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:textSize="@dimen/textSize_default"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:textColor="@color/black"
             android:gravity="center"
-            android:text="다음"
+            android:text="@string/next"
             />
 
     </LinearLayout>
