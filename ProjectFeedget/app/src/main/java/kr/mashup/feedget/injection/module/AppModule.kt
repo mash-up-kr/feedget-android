@@ -67,6 +67,11 @@ open class AppModule {
 
     @Provides
     @PerApplication
+    internal fun provideNotificationRemote(apiService: FeedGetService): NotificationRemote =
+            NotificationRemoteImpl(apiService)
+
+    @Provides
+    @PerApplication
     internal fun provideCategoryRepository(categoryRemote: CategoryRemote): CategoryRepositoy =
         CategoryRemoteDataSource(categoryRemote)
 
@@ -92,8 +97,8 @@ open class AppModule {
 
     @Provides
     @PerApplication
-    internal fun provideNotificationRepository(apiService: FeedGetService): NotificationRepository =
-            NotificationRemoteDataSource(apiService)
+    internal fun provideNotificationRepository(notificationRemote: NotificationRemote): NotificationRepository =
+            NotificationRemoteDataSource(notificationRemote)
 
     @Provides
     @PerApplication
