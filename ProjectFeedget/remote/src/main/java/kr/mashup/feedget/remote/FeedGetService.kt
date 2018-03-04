@@ -24,9 +24,9 @@ interface FeedGetService {
 
     @GET("/creations")
     fun getCreations(
-        page: String,
-        cursor: String?,
-        categories: String
+        @Query("page") page: String,
+        @Query("cursor") cursor: String?,
+        @Query("categories") categories: String
     ): Single<GetCreationsResponse>
 
     data class GetCreationsResponse(
@@ -45,10 +45,10 @@ interface FeedGetService {
 
     @POST("/creations")
     fun postCreations(
-        @Body body: RequestPostCreation
+        @Body body: RequestPostCreations
     ): Single<PostCreationResponse>
 
-    data class RequestPostCreation(
+    data class RequestPostCreations(
         val title: String,
         val description: String,
         val category: String,
@@ -141,15 +141,15 @@ interface FeedGetService {
 
     //User
 
-    @POST("/users/sign-in")
+    @POST("/sign-in")
     fun register(
         @Body body: RequestRegister
     ): Single<RegisterResponse>
 
     data class RequestRegister(
-        val realName : String,
-        val nickname : String,
-        val email : String,
+        val realName: String,
+        val nickname: String,
+        val email: String,
         val oauthToken: String,
         val oauthType: String
     )

@@ -73,29 +73,29 @@ class DummyDataService : FeedGetService {
                     )
             )
 
-    override fun postCreations(body: FeedGetService.RequestPostCreation): Single<FeedGetService.PostCreationResponse> =
-            Single.just(
-                    FeedGetService.PostCreationResponse(
-                            Creation(
-                                    "1",
-                                    "이것은 타이틀",
-                                    "이것은 세부 사항",
-                                    Date().time,
-                                    null,
-                                    10.0,
-                                    CreationStatus.DEADLINE,
-                                    true,
-                                    10,
-                                    false,
-                                    User(
-                                            "1",
-                                            "니그네임",
-                                            Grade.BRONZE
-                                    ),
-                                    listOf()
-                            )
-                    )
+    override fun postCreations(body: FeedGetService.RequestPostCreations): Single<FeedGetService.PostCreationResponse> =
+        Single.just(
+            FeedGetService.PostCreationResponse(
+                Creation(
+                    "1",
+                    "이것은 타이틀",
+                    "이것은 세부 사항",
+                    Date().time,
+                    null,
+                    10.0,
+                    CreationStatus.DEADLINE,
+                    true,
+                    10,
+                    false,
+                    User(
+                        "1",
+                        "니그네임",
+                        Grade.BRONZE
+                    ),
+                    listOf()
+                )
             )
+        )
 
     override fun updateCreation(creationId: String, body: FeedGetService.RequestUpdateCreation): Single<FeedGetService.UpdateCreationResponse> =
             Single.just(

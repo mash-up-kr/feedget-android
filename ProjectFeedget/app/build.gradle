@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'me.tatarka.retrolambda'
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def API_SERVER_IP = properties.getProperty('API_SERVER_IP')
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -21,6 +25,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildTypes.each {
+        it.buildConfigField 'String', 'API_SERVER_IP', API_SERVER_IP
+    }
+
     dataBinding {
         enabled = true
     }
@@ -40,7 +49,6 @@ dependencies {
 
     implementation project(':presentation')
     implementation project(':remote')
-    implementation project(':data')
 
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'

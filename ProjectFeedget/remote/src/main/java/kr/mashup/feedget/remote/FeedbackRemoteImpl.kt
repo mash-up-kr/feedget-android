@@ -1,17 +1,15 @@
-package kr.mashup.feedget.data.repository
+package kr.mashup.feedget.remote
 
 import io.reactivex.Completable
 import io.reactivex.Single
-import kr.mashup.feedget.domain.repository.FeedbackRepository
+import kr.mashup.feedget.data.repository.FeedbackRemote
 import kr.mashup.feedget.entity.Feedback
-import kr.mashup.feedget.remote.FeedGetService
 import javax.inject.Inject
 
-class FeedbackRemoteDataSource @Inject constructor(private val api: FeedGetService) : FeedbackRepository {
+class FeedbackRemoteImpl @Inject constructor(private val api: FeedGetService) : FeedbackRemote {
 
     override fun getFeedback(creationId: String): Single<List<Feedback>> =
-        api.getFeedback(creationId)
-            .map { it.list }
+        api.getFeedback(creationId).map { it.list }
 
     override fun postFeedback(creationId: String, description: String, anonymity: Boolean): Completable =
         api.postFeedback(creationId, FeedGetService.RequestPostFeedabck(description, anonymity))

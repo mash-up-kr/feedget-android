@@ -4,18 +4,19 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import kr.mashup.feedget.BuildConfig
 import kr.mashup.feedget.data.executor.JobExecutor
 import kr.mashup.feedget.data.repository.*
+import kr.mashup.feedget.data.source.*
 import kr.mashup.feedget.domain.executor.PostExecutionThread
 import kr.mashup.feedget.domain.executor.ThreadExecutor
 import kr.mashup.feedget.domain.interactor.usecases.*
 import kr.mashup.feedget.domain.repository.*
 import kr.mashup.feedget.injection.scopes.PerApplication
-import kr.mashup.feedget.remote.FeedGetService
-import kr.mashup.feedget.remote.TokenProvider
-import kr.mashup.feedget.remote.dummy.DummyDataService
+import kr.mashup.feedget.remote.*
 import kr.mashup.feedget.repository.PrefsDataStore
 import kr.mashup.feedget.ui.UiThread
+import kr.mashup.feedget.util.TokenProvider
 
 
 @Module
@@ -27,13 +28,13 @@ open class AppModule {
 
     @Provides
     @PerApplication
-    internal fun provideTokenProvider(context: Context): TokenProvider = kr.mashup.feedget.util.TokenProvider(context)
+    internal fun provideTokenRepository(context: Context): TokenRepository = TokenProvider(context)
 
     @Provides
     @PerApplication
-    internal fun provideFeegetService(tokenProvider: TokenProvider): FeedGetService =
-        DummyDataService() // 이부분이 더미입니당.
-//        FeedgetServiceFactory.makeFeedGetService(BuildConfig.DEBUG, tokenProvider)
+    internal fun provideFeegetService(tokenProvider: TokenRepository): FeedGetService =
+//        DummyDataService() // 이부분이 더미입니당.
+        FeedgetServiceFactory.makeFeedGetService(BuildConfig.DEBUG, BuildConfig.API_SERVER_IP, tokenProvider)
 
     @Provides
     @PerApplication
@@ -41,28 +42,53 @@ open class AppModule {
 
     @Provides
     @PerApplication
-    internal fun provideCategoryRepository(apiService: FeedGetService): CategoryRepositoy =
-        CategoryRemoteDataSource(apiService)
+    internal fun provideCategoryRemote(apiService: FeedGetService): CategoryRemote =
+        CategoryRemoteImpl(apiService)
 
     @Provides
     @PerApplication
-    internal fun provideContentRepository(apiService: FeedGetService): ContentRepository =
-        ContentRemoteDataSource(apiService)
+    internal fun provideContentRemote(apiService: FeedGetService): ContentRemote =
+        ContentRemoteImpl(apiService)
 
     @Provides
     @PerApplication
-    internal fun provideCreationRepository(apiService: FeedGetService): CreationRepository =
-        CreationRemoteDataSource(apiService)
+    internal fun provideCreationRemote(apiService: FeedGetService): CreationRemote =
+        CreationRemoteImpl(apiService)
 
     @Provides
     @PerApplication
-    internal fun provideFeedbackRepository(apiService: FeedGetService): FeedbackRepository =
-        FeedbackRemoteDataSource(apiService)
+    internal fun provideFeedbackRemote(apiService: FeedGetService): FeedbackRemote =
+        FeedbackRemoteImpl(apiService)
 
     @Provides
     @PerApplication
-    internal fun provideUserRepository(apiService: FeedGetService): UserRepository =
-        UserRemoteDataSource(apiService)
+    internal fun provideUserRemote(apiService: FeedGetService): UserRemote =
+        UserRemoteImpl(apiService)
+
+    @Provides
+    @PerApplication
+    internal fun provideCategoryRepository(categoryRemote: CategoryRemote): CategoryRepositoy =
+        CategoryRemoteDataSource(categoryRemote)
+
+    @Provides
+    @PerApplication
+    internal fun provideContentRepository(contentRemote: ContentRemote): ContentRepository =
+        ContentRemoteDataSource(contentRemote)
+
+    @Provides
+    @PerApplication
+    internal fun provideCreationRepository(creationRemote: CreationRemote): CreationRepository =
+        CreationRemoteDataSource(creationRemote)
+
+    @Provides
+    @PerApplication
+    internal fun provideFeedbackRepository(feedbackRemote: FeedbackRemote): FeedbackRepository =
+        FeedbackRemoteDataSource(feedbackRemote)
+
+    @Provides
+    @PerApplication
+    internal fun provideUserRepository(userRemote: UserRemote): UserRepository =
+        UserRemoteDataSource(userRemote)
 
     @Provides
     @PerApplication
@@ -157,11 +183,20 @@ open class AppModule {
     @PerApplication
     internal fun provideRegister(
         userRepository: UserRepository,
-        prefsRepository: PrefsRepository,
+        tokenRepository: TokenRepository,
         threadExecutor: ThreadExecutor,
         postExecutionThread: PostExecutionThread
     ): Register =
-        Register(userRepository,prefsRepository, threadExecutor, postExecutionThread)
+        Register(userRepository, tokenRepository, threadExecutor, postExecutionThread)
+
+    @Provides
+    @PerApplication
+    internal fun provideIsLogined(
+        tokenRepository: TokenRepository,
+        threadExecutor: ThreadExecutor,
+        postExecutionThread: PostExecutionThread
+    ): IsLogined =
+        IsLogined(tokenRepository, threadExecutor, postExecutionThread)
 
     @Provides
     @PerApplication

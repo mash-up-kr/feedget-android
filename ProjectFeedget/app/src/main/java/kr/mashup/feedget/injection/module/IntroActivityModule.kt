@@ -2,6 +2,7 @@ package kr.mashup.feedget.injection.module
 
 import dagger.Module
 import dagger.Provides
+import kr.mashup.feedget.domain.interactor.usecases.IsLogined
 import kr.mashup.feedget.domain.interactor.usecases.Register
 import kr.mashup.feedget.injection.scopes.PerActivity
 import kr.mashup.feedget.presentation.intro.IntroPresenter
@@ -18,6 +19,6 @@ open class IntroActivityModule {
 
     @PerActivity
     @Provides
-    internal fun provideBrowsePresenter(view: IntroView, register: Register): IntroPresenter =
-        IntroPresenterImpl(view, register)
+    internal fun provideBrowsePresenter(view: IntroView, isLogined: IsLogined, register: Register): IntroPresenter =
+        IntroPresenterImpl(view, isLogined, register)
 }

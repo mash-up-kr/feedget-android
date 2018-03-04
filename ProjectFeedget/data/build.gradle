@@ -3,7 +3,6 @@ apply plugin: 'kotlin'
 dependencies {
 
     compile project(':domain')
-    compile project(':remote')
 
     //di
     implementation "javax.inject:javax.inject:$javaxInjectVersion"
