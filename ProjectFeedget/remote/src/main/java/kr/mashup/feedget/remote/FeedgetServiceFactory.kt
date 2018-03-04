@@ -1,6 +1,5 @@
 package kr.mashup.feedget.remote
 
-import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kr.mashup.feedget.domain.repository.TokenRepository
@@ -13,17 +12,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object FeedgetServiceFactory {
 
-    fun makeFeedGetService(isDebug: Boolean, tokenProvider: TokenRepository): FeedGetService {
+    fun makeFeedGetService(isDebug: Boolean, baseUrl: String, tokenProvider: TokenRepository): FeedGetService {
         val okHttpClient = makeOkHttpClient(
             makeLoggingInterceptor(isDebug),
             makeHeaderInterceptor(tokenProvider)
         )
-        return makeFeedGetService(okHttpClient, makeGson())
+        return makeFeedGetService(baseUrl, okHttpClient, makeGson())
     }
 
-    private fun makeFeedGetService(okHttpClient: OkHttpClient, gson: Gson): FeedGetService {
+    private fun makeFeedGetService(baseUrl: String, okHttpClient: OkHttpClient, gson: Gson): FeedGetService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://52.78.237.41:8060/")
+            .baseUrl(baseUrl)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))

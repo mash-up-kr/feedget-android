@@ -33,7 +33,7 @@ open class AppModule {
     @PerApplication
     internal fun provideFeegetService(tokenProvider: TokenRepository): FeedGetService =
 //        DummyDataService() // 이부분이 더미입니당.
-        FeedgetServiceFactory.makeFeedGetService(BuildConfig.DEBUG, tokenProvider)
+        FeedgetServiceFactory.makeFeedGetService(BuildConfig.DEBUG, BuildConfig.API_SERVER_IP, tokenProvider)
 
     @Provides
     @PerApplication
