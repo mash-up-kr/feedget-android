@@ -4,14 +4,17 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView
-        android:text="Splash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:background="@color/pumpkin_orange"
+        android:layout_height="match_parent">
 
-    <Button
-        android:visibility="gone"
-        android:id="@+id/testButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="216dp"
+            android:layout_marginBottom="100dp"
+            android:src="@drawable/icon_logo_big"
+            android:layout_height="128dp" />
+
+    </LinearLayout>
 </LinearLayout>

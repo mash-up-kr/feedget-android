@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">FeedGet</string>
+    <string name="app_name">comento</string>
+
+    <string name="register_title">제목</string>
+    <string name="register_content">본문을 입력해주세요.</string>
+
+    <string name="category_title">카테고리(필수)</string>
+    <string name="category_design">디자인</string>
+    <string name="category_crafts">공예</string>
+    <string name="category_painting">회화</string>
+    <string name="category_writing">글</string>
+    <string name="category_etc">기타</string>
+    
+    <string name="cancel">취소</string>
+    <string name="next">다음</string>
 </resources>

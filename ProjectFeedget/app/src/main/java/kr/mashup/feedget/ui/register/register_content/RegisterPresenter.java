@@ -1,6 +1,5 @@
-package kr.mashup.feedget.ui.register;
+package kr.mashup.feedget.ui.register.register_content;
 
-import android.widget.AdapterView;
 import android.view.View;
 
 public class RegisterPresenter implements Contract.Presenter{

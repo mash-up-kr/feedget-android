@@ -9,6 +9,7 @@ import kr.mashup.feedget.extension.startActivityWithFinish
 import kr.mashup.feedget.presentation.splash.SplashPresenter
 import kr.mashup.feedget.presentation.splash.SplashView
 import kr.mashup.feedget.ui.intro.IntroActivity
+import kr.mashup.feedget.ui.main.MainActivity
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -20,13 +21,13 @@ class SplashActivity : AppCompatActivity(), SplashView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         AndroidInjection.inject(this)
-        Completable.timer(1000, TimeUnit.MILLISECONDS)
+        Completable.timer(1000 * 3, TimeUnit.MILLISECONDS)
             .subscribe {
                 startIntro()
             }
     }
 
     override fun startIntro() {
-        startActivityWithFinish<IntroActivity>()
+        startActivityWithFinish<MainActivity>()
     }
 }

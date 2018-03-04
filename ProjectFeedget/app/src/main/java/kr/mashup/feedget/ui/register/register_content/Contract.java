@@ -1,6 +1,4 @@
-package kr.mashup.feedget.ui.register;
-
-import android.widget.AdapterView;
+package kr.mashup.feedget.ui.register.register_content;
 
 interface Contract {
 

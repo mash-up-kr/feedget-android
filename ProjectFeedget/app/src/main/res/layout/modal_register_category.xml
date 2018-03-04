@@ -27,7 +27,7 @@
                 />
 
             <LinearLayout
-                android:id="@+id/categoryForm"
+                android:id="@+id/selectCategoryLayout"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:orientation="horizontal"
@@ -37,7 +37,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/tv_category_design"
+                    android:id="@+id/textView_categoryDesign"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="디자인"
@@ -48,7 +48,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_category_painting"
+                    android:id="@+id/textView_categoryPainting"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="회화"
@@ -59,7 +59,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_category_crafts"
+                    android:id="@+id/textView_categoryCrafts"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="공예"
@@ -71,7 +71,7 @@
 
 
                 <TextView
-                    android:id="@+id/tv_category_writing"
+                    android:id="@+id/textView_categoryWriting"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="글"
@@ -83,7 +83,7 @@
 
 
                 <TextView
-                    android:id="@+id/tv_category_etc"
+                    android:id="@+id/textView_categoryEtc"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="기타"
