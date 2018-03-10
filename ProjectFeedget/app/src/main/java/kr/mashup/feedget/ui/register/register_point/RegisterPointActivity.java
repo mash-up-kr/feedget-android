@@ -25,10 +25,11 @@ import kr.mashup.feedget.ui.register.CreationData;
  * Created by eastroots92 on 2017-12-23.
  */
 
+// TODO:  리팩토링 하기
 public class RegisterPointActivity extends BaseActivity<Contract.Presenter> implements Contract.View {
 
 
-    //  단순 포인트 확인 용
+    //  단순 포인트 확인 용도
     private int userPoint = 1800;
 
     private ActivityRegisterPointBinding binding;
