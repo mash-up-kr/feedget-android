@@ -32,7 +32,11 @@
         </activity>
 
         <activity
-            android:name="kr.mashup.feedget.ui.register.RegisterActivity"
+            android:name="kr.mashup.feedget.ui.register.register_content.RegisterActivity"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity
+            android:name="kr.mashup.feedget.ui.register.register_point.RegisterPointActivity"
             android:windowSoftInputMode="adjustResize"/>
 
         <meta-data
