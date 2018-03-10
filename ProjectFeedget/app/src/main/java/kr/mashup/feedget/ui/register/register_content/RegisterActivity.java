@@ -1,18 +1,35 @@
 package kr.mashup.feedget.ui.register.register_content;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.Service;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
+import java.util.ArrayList;
+
+import gun0912.tedbottompicker.TedBottomPicker;
 import kr.mashup.feedget.R;
 import kr.mashup.feedget.databinding.ActivityRegisterBinding;
 import kr.mashup.feedget.ui.base.BaseActivity;
 import kr.mashup.feedget.ui.register.CreationData;
+import kr.mashup.feedget.ui.register.ImageData;
 import kr.mashup.feedget.ui.register.register_point.RegisterPointActivity;
 
 
@@ -20,8 +37,10 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
 
     private ActivityRegisterBinding binding;
     private Activity registerActivity;
+    private ArrayList<Uri> selectedUriList;
 
     private CreationData creationData = new CreationData();
+    private ImageData imageData = new ImageData();
 
     public static final int REGISTER_REQUEST = 10;
 
@@ -35,21 +54,82 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register);
 
         presenter.init();
+
     }
 
     @Override
     public void initViews() {
         registerActivity = RegisterActivity.this;
-
         ToolBarManager();
+        presenter.chekingKeyboard();
+        ImageDataManager();
     }
 
-    /* ToolBar Manager Start */
+
+
+    @Override
+    public ActivityRegisterBinding getBinding() {
+        return binding;
+    }
+
+    @Override
+    public InputMethodManager getControllManager() {
+        return (InputMethodManager) getSystemService(Service.INPUT_METHOD_SERVICE);
+    }
+
     private void ToolBarManager() {
         initToolBar();
         modalCategoryManager();
         nextButtonManager();
     }
+
+    private void ImageDataManager() {
+        imageButtonTrigger();
+    }
+
+    private void imageButtonTrigger() {
+        binding.imageViewImageButton.setOnClickListener(__->{
+            setPermission();
+        });
+    }
+
+    private void setPermission() {
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                initImagePicker();
+            }
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                Toast.makeText(RegisterActivity.this, "권한이 없습니다.", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        new TedPermission(RegisterActivity.this)
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("권한 설정 동의를 안하신다면, 나중에 이곳에서 설정해 주세요. [설정] > [권한]")
+                .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .check();
+    }
+
+    private void initImagePicker(){
+        TedBottomPicker bottomSheetDialogFragment = new TedBottomPicker.Builder(RegisterActivity.this)
+                .setOnMultiImageSelectedListener(new TedBottomPicker.OnMultiImageSelectedListener() {
+
+                    @Override
+                    public void onImagesSelected(ArrayList<Uri> uriList) {
+                        selectedUriList = uriList;
+                        showUriList(uriList);
+                    }
+                })
+                .setPeekHeight(1600)
+                .showTitle(false)
+                .setCompleteButtonText("첨부")
+                .setEmptySelectionText("No Select")
+                .setSelectedUriList(selectedUriList)
+                .create();
+        bottomSheetDialogFragment.show(getSupportFragmentManager());
+    };
 
     private void initToolBar() {
 
@@ -174,6 +254,33 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
             startActivityForResult(intent, REGISTER_REQUEST);
         }else{
             Toast.makeText(registerActivity, "내용을 모두 기입해 주시기 바랍니다.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void showUriList(ArrayList<Uri> uriList) {
+        binding.selectedPhotosContainer.removeAllViews();
+
+        binding.ivImage.setVisibility(View.GONE);
+
+        binding.selectedPhotosContainer.setVisibility(View.VISIBLE);
+
+        int widthPixel = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,150,getResources().getDisplayMetrics());
+        int heightPixel = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150,getResources().getDisplayMetrics());
+
+        for (Uri uri : uriList) {
+            imageData.setFiles(uri);
+            View imageHolder = LayoutInflater.from(this).inflate(R.layout.image_item, null);
+            ImageView thumbnail = (ImageView) imageHolder.findViewById(R.id.media_image);
+
+            Glide.with(this)
+                    .load(uri.toString())
+                    .fitCenter()
+                    .into(thumbnail);
+
+            binding.selectedPhotosContainer.addView(imageHolder);
+
+            thumbnail.setLayoutParams(new FrameLayout.LayoutParams(widthPixel, heightPixel));
         }
 
     }
