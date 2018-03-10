@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ImageData implements Serializable {
     private String creationId;
-    private ArrayList<Uri> files;
+    private ArrayList<Uri> files = new ArrayList<>();
 
     public String getCreationId() {
         return creationId;

@@ -48,7 +48,7 @@ public class CreationData implements Serializable {
         this.category = category;
     }
 
-    public boolean isAnonymity() {
+    public boolean getAnonymity() {
         return anonymity;
     }
 
