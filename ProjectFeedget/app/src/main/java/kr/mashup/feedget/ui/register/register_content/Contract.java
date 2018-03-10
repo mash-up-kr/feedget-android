@@ -4,10 +4,11 @@ interface Contract {
 
     interface View {
 
+        void initViews();
     }
 
     interface Presenter {
-        void setOnClickEvent(android.view.View view);
+        void init();
     }
 
 }
