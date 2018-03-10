@@ -1,6 +1,7 @@
 package kr.mashup.feedget.ui.register.register_point;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -10,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +32,6 @@ public class RegisterPointActivity extends BaseActivity<Contract.Presenter> impl
     private int userPoint = 1800;
 
     private ActivityRegisterPointBinding binding;
-
-    private CreationData data;
 
     private TextView tmp_point;
 
@@ -58,21 +58,17 @@ public class RegisterPointActivity extends BaseActivity<Contract.Presenter> impl
         binding.textViewRegisterSubmitButton.setOnClickListener(__ -> {
 
 
-            data = (CreationData) getIntent().getSerializableExtra("data");
-
             String point = binding.EditTextSetPointBar.getText().toString();
             if (point != "") {
-                float rewardPoint = Float.parseFloat(point);
+                int rewardPoint = Integer.parseInt(binding.EditTextSetPointBar.getText().toString());
                 boolean anonymity = binding.switchIsHideNickname.isChecked();
 
-                data.setRewardPoint(rewardPoint);
-                data.setAnonymity(anonymity);
-                if (data.isSubmit()) {
-                    Intent intent = new Intent();
-                    intent.putExtra("data", data);
-                    setResult(RESULT_OK, intent);
-                    finishAlert();
-                }
+                Intent intent = new Intent();
+                intent.putExtra("rewardPoint", rewardPoint);
+                intent.putExtra("anonymity", anonymity);
+                setResult(Activity.RESULT_OK, intent);
+                finishAlert();
+
             } else {
                 Toast.makeText(this, "포인트 입력해야해!!", Toast.LENGTH_SHORT).show();
             }
@@ -112,9 +108,9 @@ public class RegisterPointActivity extends BaseActivity<Contract.Presenter> impl
 
         for (int i = 0; i < binding.linearLayoutPointBlock.getChildCount(); i++) {
             ViewGroup childContainer = (ViewGroup) binding.linearLayoutPointBlock.getChildAt(i);
-            for(int j=0;j<childContainer.getChildCount();j++){
+            for (int j = 0; j < childContainer.getChildCount(); j++) {
                 android.view.View childView = childContainer.getChildAt(j);
-                childView.setOnClickListener(view ->{
+                childView.setOnClickListener(view -> {
                     setPointResult((TextView) view);
                 });
             }
@@ -157,8 +153,8 @@ public class RegisterPointActivity extends BaseActivity<Contract.Presenter> impl
         tmp_point = view;
     }
 
-    private void editTextPointChecker(){
-        binding.EditTextSetPointBar.addTextChangedListener(new TextWatcher(){
+    private void editTextPointChecker() {
+        binding.EditTextSetPointBar.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -168,13 +164,13 @@ public class RegisterPointActivity extends BaseActivity<Contract.Presenter> impl
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 //              현재 값을 완전히 지우면 앱이 죽음 ㅠㅠ
-                if(s.length() != 0) {
+                if (s.length() != 0) {
                     int point = Integer.parseInt(s.toString());
                     if (point > userPoint) {
                         Toast.makeText(RegisterPointActivity.this, "보유하신 포인트를 초과하였습니다.", Toast.LENGTH_SHORT).show();
                         binding.EditTextSetPointBar.setText(Integer.toString(userPoint));
                     }
-                }else{
+                } else {
                     binding.EditTextSetPointBar.setText("0");
                 }
 
@@ -183,15 +179,14 @@ public class RegisterPointActivity extends BaseActivity<Contract.Presenter> impl
             @SuppressLint("ResourceAsColor")
             @Override
             public void afterTextChanged(Editable s) {
-                if (toString() != "0"){
-                    Toast.makeText(RegisterPointActivity.this, "메이데이메이데이", Toast.LENGTH_SHORT).show();
+                if (toString() != "0") {
+
                     binding.pointUnderBarLine.setBackgroundColor(R.color.dodger_blue);
                 }
 
             }
         });
     }
-
 
 
 }

@@ -9,13 +9,10 @@ interface Contract {
     interface View {
 
         void initViews();
-        ActivityRegisterBinding getBinding();
-        InputMethodManager getControllManager();
     }
 
     interface Presenter {
         void init();
-        void chekingKeyboard();
     }
 
 }

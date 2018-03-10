@@ -8,6 +8,8 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.TypedValue;
@@ -61,20 +63,36 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
     public void initViews() {
         registerActivity = RegisterActivity.this;
         ToolBarManager();
-        presenter.chekingKeyboard();
         ImageDataManager();
+        checkingKeyboard();
     }
 
+    private void checkingKeyboard() {
+        InputMethodManager controllManager = (InputMethodManager)getSystemService(Service.INPUT_METHOD_SERVICE);
+        SoftKeyboard softKeyboard = new SoftKeyboard(binding.contentLayout, controllManager);
 
+        softKeyboard.setSoftKeyboardCallback(new SoftKeyboard.SoftKeyboardChanged(){
+            @Override
+            public void onSoftKeyboardHide(){
+                new Handler(Looper.getMainLooper()).post(new Runnable()
+                {
+                    @Override
+                    public void run(){
+                        binding.imageListFrame.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
 
-    @Override
-    public ActivityRegisterBinding getBinding() {
-        return binding;
-    }
-
-    @Override
-    public InputMethodManager getControllManager() {
-        return (InputMethodManager) getSystemService(Service.INPUT_METHOD_SERVICE);
+            @Override
+            public void onSoftKeyboardShow(){
+                new Handler(Looper.getMainLooper()).post(new Runnable(){
+                    @Override
+                    public void run(){
+                        binding.imageListFrame.setVisibility(View.GONE);
+                    }
+                });
+            }
+        });
     }
 
     private void ToolBarManager() {
@@ -234,9 +252,17 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
         String content = binding.editTextContent.getText().toString();
         String category = binding.toolbar.textViewCategory.getText().toString();
 
+        Log.e("확인1", title);
+        Log.e("확인1", content);
+        Log.e("확인1", category);
+
         creationData.setTitle(title);
         creationData.setDescription(content);
         creationData.setCategory(category);
+
+        Log.e("확인", creationData.getTitle());
+        Log.e("확인", ""+ creationData.getRewardPoint());
+        Log.e("확인", ""+creationData.getAnonymity());
     }
 
     private boolean ValidationData() {
@@ -250,7 +276,6 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
     private void openPointActivity(boolean isDataReady) {
         if(isDataReady){
             Intent intent = new Intent(getApplicationContext(), RegisterPointActivity.class);
-            intent.putExtra("data",  creationData);
             startActivityForResult(intent, REGISTER_REQUEST);
         }else{
             Toast.makeText(registerActivity, "내용을 모두 기입해 주시기 바랍니다.", Toast.LENGTH_SHORT).show();
@@ -291,13 +316,16 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
 
         if (requestCode ==  REGISTER_REQUEST){
             if(resultCode == RESULT_OK){
-                creationData = intent.getParcelableExtra("data");
+                creationData.setRewardPoint(intent.getIntExtra("rewardPoint",0));
+                creationData.setAnonymity(intent.getBooleanExtra("anonymity",false));
 
+//                Log.e("확인", creationData.getTitle());
+                Log.e("확인", ""+ creationData.getRewardPoint());
+                Log.e("확인", ""+creationData.getAnonymity());
                 // 값을 여기서 서버에 보낸다. 뿜뿜
                 finish();
             }else{
                 Toast.makeText(this, "Error : 다시 시도해 주세요", Toast.LENGTH_SHORT).show();
-
             }
 
         }
