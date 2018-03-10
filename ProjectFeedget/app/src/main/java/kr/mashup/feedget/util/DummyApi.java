@@ -40,6 +40,7 @@ public class DummyApi /*implements ApiService*/ {
                     dummyCreation.title = "과제용 일러스트레이션 크리틱좀 부탁드립니다.";
                     dummyCreation.description = "과제용 카페 박람회 포스터 리디자인 중 사용될 일러고 동화적인 느낌으로 진행했어요. 폰트나 구도가 확신이 안 가는데 피드백 부탁드립니다.";
                     dummyCreation.category = "회화";
+                    dummyCreation.anonymity = false;
                     dummyCreation.dueDate = new Date(System.currentTimeMillis());
                     dummyCreation.createdDate = new Date(System.currentTimeMillis());
                     dummyCreation.imageUrlList = new ArrayList<>();
