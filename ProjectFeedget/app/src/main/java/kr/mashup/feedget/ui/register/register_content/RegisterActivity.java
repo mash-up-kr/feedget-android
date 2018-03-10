@@ -29,10 +29,12 @@ import java.util.ArrayList;
 import gun0912.tedbottompicker.TedBottomPicker;
 import kr.mashup.feedget.R;
 import kr.mashup.feedget.databinding.ActivityRegisterBinding;
+import kr.mashup.feedget.model.dummy.Creation;
 import kr.mashup.feedget.ui.base.BaseActivity;
 import kr.mashup.feedget.ui.register.CreationData;
 import kr.mashup.feedget.ui.register.ImageData;
 import kr.mashup.feedget.ui.register.register_point.RegisterPointActivity;
+import kr.mashup.feedget.util.DummyApi;
 
 
 public class RegisterActivity extends BaseActivity<Contract.Presenter> implements Contract.View{
@@ -59,12 +61,41 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
 
     }
 
+
+
     @Override
     public void initViews() {
         registerActivity = RegisterActivity.this;
         ToolBarManager();
         ImageDataManager();
         checkingKeyboard();
+    }
+
+    @Override
+    public void checkingEdit() {
+        isCreation();
+    }
+
+    @Override
+    public void setCreationData(Creation creation) {
+        setEditTextTitle(creation.title);
+        setEditTextContent(creation.description);
+        changeCategory(creation.category);
+    }
+
+    private void setEditTextContent(String description) {
+        binding.editTextContent.setText(description);
+    }
+
+    private void setEditTextTitle(String title) {
+        binding.editTextTitle.setText(title);
+    }
+
+    private void isCreation(){
+        String creationId = getIntent().getStringExtra("creationId");
+        if(creationId != null){
+            presenter.requestCreationDetail(creationId);
+        }
     }
 
     private void checkingKeyboard() {
@@ -188,41 +219,50 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
 
     private void categorySelecter() {
         binding.modal.textViewCategoryDesign.setOnClickListener(__->{
-            resetCategoryTitle();
-            setCategoryTitle("디자인");
-            binding.modal.textViewCategoryDesign.setTypeface(Typeface.DEFAULT_BOLD);
-            categoryToggleCloseAction();
-
+            changeCategory("디자인");
         });
 
         binding.modal.textViewCategoryCrafts.setOnClickListener(__->{
-            resetCategoryTitle();
-            setCategoryTitle("공예");
-            binding.modal.textViewCategoryCrafts.setTypeface(Typeface.DEFAULT_BOLD);
-            categoryToggleCloseAction();
+            changeCategory("공예");
         });
 
         binding.modal.textViewCategoryPainting.setOnClickListener(__->{
-            resetCategoryTitle();
-            setCategoryTitle("회화");
-            binding.modal.textViewCategoryPainting.setTypeface(Typeface.DEFAULT_BOLD);
-            categoryToggleCloseAction();
+            changeCategory("회화");
         });
 
         binding.modal.textViewCategoryWriting.setOnClickListener(__->{
-            resetCategoryTitle();
-            setCategoryTitle("글");
-            binding.modal.textViewCategoryWriting.setTypeface(Typeface.DEFAULT_BOLD);
-            categoryToggleCloseAction();
+            changeCategory("글");
         });
 
         binding.modal.textViewCategoryEtc.setOnClickListener(__->{
-            resetCategoryTitle();
-            setCategoryTitle("기타");
-            binding.modal.textViewCategoryEtc.setTypeface(Typeface.DEFAULT_BOLD);
-            categoryToggleCloseAction();
+            changeCategory("기타");
         });
 
+    }
+
+    private void changeCategory(String category) {
+        resetCategoryTitle();
+        if(category == "디자인"){
+            setCategoryTitle("디자인");
+            binding.modal.textViewCategoryDesign.setTypeface(Typeface.DEFAULT_BOLD);
+        }
+        else if(category == "공예"){
+            setCategoryTitle("공예");
+            binding.modal.textViewCategoryCrafts.setTypeface(Typeface.DEFAULT_BOLD);
+        }
+        else if(category == "회화"){
+            setCategoryTitle("회화");
+            binding.modal.textViewCategoryPainting.setTypeface(Typeface.DEFAULT_BOLD);
+        }
+        else if(category == "글"){
+            setCategoryTitle("글");
+            binding.modal.textViewCategoryWriting.setTypeface(Typeface.DEFAULT_BOLD);
+        }
+        else if(category == "기타"){
+            setCategoryTitle("기타");
+            binding.modal.textViewCategoryDesign.setTypeface(Typeface.DEFAULT_BOLD);
+        }
+        categoryToggleCloseAction();
     }
 
     private void categoryToggleOpenAction() {
@@ -252,17 +292,11 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
         String content = binding.editTextContent.getText().toString();
         String category = binding.toolbar.textViewCategory.getText().toString();
 
-        Log.e("확인1", title);
-        Log.e("확인1", content);
-        Log.e("확인1", category);
 
         creationData.setTitle(title);
         creationData.setDescription(content);
         creationData.setCategory(category);
 
-        Log.e("확인", creationData.getTitle());
-        Log.e("확인", ""+ creationData.getRewardPoint());
-        Log.e("확인", ""+creationData.getAnonymity());
     }
 
     private boolean ValidationData() {
@@ -319,10 +353,8 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
                 creationData.setRewardPoint(intent.getIntExtra("rewardPoint",0));
                 creationData.setAnonymity(intent.getBooleanExtra("anonymity",false));
 
-//                Log.e("확인", creationData.getTitle());
-                Log.e("확인", ""+ creationData.getRewardPoint());
-                Log.e("확인", ""+creationData.getAnonymity());
-                // 값을 여기서 서버에 보낸다. 뿜뿜
+                presenter.requestManager(creationData, imageData);
+
                 finish();
             }else{
                 Toast.makeText(this, "Error : 다시 시도해 주세요", Toast.LENGTH_SHORT).show();
