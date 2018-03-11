@@ -299,7 +299,7 @@ public class RegisterActivity extends BaseActivity<Contract.Presenter> implement
 
     }
 
-    private boolean ValidationData() {
+    private boolean  ValidationData() {
         if( creationData.isCategory() && creationData.isCompleted()) {
             return true;
         }else{
