@@ -67,6 +67,11 @@ open class AppModule {
 
     @Provides
     @PerApplication
+    internal fun provideNotificationRemote(apiService: FeedGetService): NotificationRemote =
+            NotificationRemoteImpl(apiService)
+
+    @Provides
+    @PerApplication
     internal fun provideCategoryRepository(categoryRemote: CategoryRemote): CategoryRepositoy =
         CategoryRemoteDataSource(categoryRemote)
 
@@ -89,6 +94,11 @@ open class AppModule {
     @PerApplication
     internal fun provideUserRepository(userRemote: UserRemote): UserRepository =
         UserRemoteDataSource(userRemote)
+
+    @Provides
+    @PerApplication
+    internal fun provideNotificationRepository(notificationRemote: NotificationRemote): NotificationRepository =
+            NotificationRemoteDataSource(notificationRemote)
 
     @Provides
     @PerApplication
@@ -201,6 +211,15 @@ open class AppModule {
         postExecutionThread: PostExecutionThread
     ): RegisterFCM =
         RegisterFCM(userRepository, threadExecutor, postExecutionThread)
+
+    @Provides
+    @PerApplication
+    internal fun provideGetNotifications(
+            notificationRepository: NotificationRepository,
+            threadExecutor: ThreadExecutor,
+            postExecutionThread: PostExecutionThread
+    ): GetNotifications =
+            GetNotifications(notificationRepository, threadExecutor, postExecutionThread)
 
     @Provides
     @PerApplication

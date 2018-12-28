@@ -18,7 +18,9 @@ import android.util.Log;
 import android.view.View;
 
 import java.io.File;
+import java.security.DomainLoadStoreParameter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import gun0912.tedbottompicker.GridSpacingItemDecoration;
@@ -96,6 +98,7 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
 
     private void initFeedbackInputView() {
         binding.submitComment.setOnClickListener(__ -> {
+            binding.galleryImageList.setVisibility(View.GONE);
         });
         binding.feedbackImage.setOnClickListener(__ -> {
             binding.galleryImageList.setVisibility(View.VISIBLE);
@@ -183,6 +186,7 @@ public class CreationDetailActivity extends BaseActivity<CreationDetailPresenter
     }
 
     private void complete(final Uri uri) {
+        Log.i("TAG", "click : " + uri);
         /*
         if (selectedUriList.contains(uri)) {
             removeImage(uri);

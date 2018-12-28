@@ -8,69 +8,70 @@ import okhttp3.MultipartBody
 import java.util.*
 
 class DummyDataService : FeedGetService {
+
     override fun getCategories(): Single<FeedGetService.GetCategoriesResponse> = Single.just(
-        FeedGetService.GetCategoriesResponse(
-            listOf(
-                Category(1L, "1번"),
-                Category(2L, "2번"),
-                Category(3L, "3번"),
-                Category(4L, "4번"),
-                Category(5L, "5번")
+            FeedGetService.GetCategoriesResponse(
+                    listOf(
+                            Category(1L, "1번"),
+                            Category(2L, "2번"),
+                            Category(3L, "3번"),
+                            Category(4L, "4번"),
+                            Category(5L, "5번")
+                    )
             )
-        )
     )
 
     override fun getCreations(page: String, cursor: String?, categories: String): Single<FeedGetService.GetCreationsResponse> =
-        Single.just(
-            FeedGetService.GetCreationsResponse(
-                1,
-                listOf(
-                    Creation(
-                        "1",
-                        "이것은 타이틀이 맞습니다",
-                        "이것은 세부 사항",
-                        Date().time,
-                        null,
-                        10.0,
-                        CreationStatus.DEADLINE,
-                        true,
-                        10,
-                        false,
-                        User(
-                            "1",
-                            "니그네임",
-                            Grade.BRONZE
-                        ),
-                        listOf()
+            Single.just(
+                    FeedGetService.GetCreationsResponse(
+                            1,
+                            listOf(
+                                    Creation(
+                                            "1",
+                                            "이것은 타이틀이 맞습니다",
+                                            "이것은 세부 사항",
+                                            Date().time,
+                                            null,
+                                            10.0,
+                                            CreationStatus.DEADLINE,
+                                            true,
+                                            10,
+                                            false,
+                                            User(
+                                                    "1",
+                                                    "니그네임",
+                                                    Grade.BRONZE
+                                            ),
+                                            listOf()
+                                    )
+                            )
                     )
-                )
             )
-        )
 
 
     override fun getCreation(creationId: String): Single<FeedGetService.GetCreationResponse> =
-        Single.just(
-            FeedGetService.GetCreationResponse(
-                Creation(
-                    "1",
-                    "이것은 타이틀",
-                    "이것은 세부 사항",
-                    Date().time,
-                    null,
-                    10.0,
-                    CreationStatus.DEADLINE,
-                    true,
-                    10,
-                    false,
-                    User(
-                        "1",
-                        "니그네임",
-                        Grade.BRONZE
-                    ),
-                    listOf()
-                )
+            Single.just(
+                    FeedGetService.GetCreationResponse(
+                            Creation(
+                                    "1",
+                                    "이것은 타이틀",
+                                    "이것은 세부 사항",
+                                    Date().time,
+                                    null,
+                                    10.0,
+                                    CreationStatus.DEADLINE,
+                                    true,
+                                    10,
+                                    false,
+                                    User(
+                                            "1",
+                                            "니그네임",
+                                            Grade.BRONZE
+                                    ),
+                                    listOf()
+                            )
+                    )
             )
-        )
 
     override fun postCreations(body: FeedGetService.RequestPostCreations): Single<FeedGetService.PostCreationResponse> =
         Single.just(
@@ -97,76 +98,120 @@ class DummyDataService : FeedGetService {
         )
 
     override fun updateCreation(creationId: String, body: FeedGetService.RequestUpdateCreation): Single<FeedGetService.UpdateCreationResponse> =
-        Single.just(
-            FeedGetService.UpdateCreationResponse(
-                Creation(
-                    "1",
-                    "이것은 타이틀",
-                    "이것은 세부 사항",
-                    Date().time,
-                    null,
-                    10.0,
-                    CreationStatus.DEADLINE,
-                    true,
-                    10,
-                    false,
-                    User(
-                        "1",
-                        "니그네임",
-                        Grade.BRONZE
-                    ),
-                    listOf()
-                )
+            Single.just(
+                    FeedGetService.UpdateCreationResponse(
+                            Creation(
+                                    "1",
+                                    "이것은 타이틀",
+                                    "이것은 세부 사항",
+                                    Date().time,
+                                    null,
+                                    10.0,
+                                    CreationStatus.DEADLINE,
+                                    true,
+                                    10,
+                                    false,
+                                    User(
+                                            "1",
+                                            "니그네임",
+                                            Grade.BRONZE
+                                    ),
+                                    listOf()
+                            )
+                    )
             )
-        )
 
     override fun deleteCreation(creationId: String): Completable =
-        Completable.complete()
+            Completable.complete()
 
     override fun postContent(creationId: String, type: String, files: List<MultipartBody.Part>): Completable =
-        Completable.complete()
+            Completable.complete()
 
     override fun deleteContent(creationId: String, body: FeedGetService.RequestDeleteContent): Completable =
-        Completable.complete()
+            Completable.complete()
 
     override fun getFeedback(creationId: String): Single<FeedGetService.GetFeedbackResponse> =
-        Single.just(
-            FeedGetService.GetFeedbackResponse(
-                listOf(
-                    Feedback(
-                        1,
-                        "설명",
-                        User(
-                            "1",
-                            "니그네임",
-                            Grade.BRONZE
-                        ),
-                        false,
-                        true,
-                        listOf()
+            Single.just(
+                    FeedGetService.GetFeedbackResponse(
+                            listOf(
+                                    Feedback(
+                                            1,
+                                            "설명",
+                                            User(
+                                                    "1",
+                                                    "니그네임",
+                                                    Grade.BRONZE
+                                            ),
+                                            false,
+                                            true,
+                                            listOf()
+                                    )
+                            )
                     )
-                )
             )
-        )
 
     override fun postFeedback(creationId: String, body: FeedGetService.RequestPostFeedabck): Completable =
-        Completable.complete()
+            Completable.complete()
 
 
     override fun deleteFeedback(creationId: String, feedbackId: String): Completable =
-        Completable.complete()
+            Completable.complete()
 
     override fun register(body: FeedGetService.RequestRegister): Single<FeedGetService.RegisterResponse> =
-        Single.just(
-            FeedGetService.RegisterResponse(
-                SignIn(
-                    "access",
-                    "refresh"
-                )
+            Single.just(
+                    FeedGetService.RegisterResponse(
+                            SignIn(
+                                    "access",
+                                    "refresh"
+                            )
+                    )
             )
-        )
 
     override fun registerFCM(body: FeedGetService.RequestRegisterFCM): Completable =
-        Completable.complete()
+            Completable.complete()
+
+    override fun getNotifications(page: String): Single<FeedGetService.GetNotificationsResponse> =
+            Single.just(
+                    FeedGetService.GetNotificationsResponse(
+                            1,
+                            listOf(
+                                    Notification(
+                                            "1",
+                                            "알림이 왔네용",
+                                            "채택하기",
+                                            "13",
+                                            false
+                                    ),
+                                    Notification(
+                                            "2",
+                                            "알림이 왔네용1",
+                                            "채택하기",
+                                            "13",
+                                            false
+                                    ),
+                                    Notification(
+                                            "3",
+                                            "알림이 왔네용2",
+                                            "채택하기",
+                                            "13",
+                                            true
+                                    ),
+                                    Notification(
+                                            "4",
+                                            "알림이 왔네용3",
+                                            "채택하기",
+                                            "13",
+                                            false
+                                    ),
+                                    Notification(
+                                            "5",
+                                            "알림이 왔네용4",
+                                            "채택하기",
+                                            "13",
+                                            false
+                                    )
+                            )
+                    )
+            )
 
 }

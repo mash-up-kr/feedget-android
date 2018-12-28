@@ -79,7 +79,7 @@ public final class FeedFragment extends BaseFragment<Contract.Presenter> impleme
 
 //        binding.toolbar.toolbar.setTitle(R.string.app_name);
         binding.searchButton.setOnClickListener(__ -> {
-            startMyPageActivity();
+
         });
     }
 
