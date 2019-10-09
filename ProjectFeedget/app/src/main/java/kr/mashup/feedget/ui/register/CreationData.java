@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class CreationData implements Serializable {
 
+    private String creationId;
     private String title ;
     private String description;
     private String category;
@@ -15,6 +16,13 @@ public class CreationData implements Serializable {
     private float rewardPoint;
 
 
+    public String getCreationId() {
+        return creationId;
+    }
+
+    public void setCreationId(String creationId) {
+        this.creationId = creationId;
+    }
 
     public String getTitle() {
         return title;
@@ -40,7 +48,7 @@ public class CreationData implements Serializable {
         this.category = category;
     }
 
-    public boolean isAnonymity() {
+    public boolean getAnonymity() {
         return anonymity;
     }
 

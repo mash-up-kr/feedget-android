@@ -1,23 +1,24 @@
 package kr.mashup.feedget.ui.register.register_point;
 
-import android.annotation.SuppressLint;
+
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import javax.annotation.Nullable;
+
 import kr.mashup.feedget.R;
 import kr.mashup.feedget.databinding.ActivityRegisterPointBinding;
 import kr.mashup.feedget.ui.base.BaseActivity;
-import kr.mashup.feedget.ui.register.CreationData;
 
 /**
  * Created by eastroots92 on 2017-12-23.
@@ -25,141 +26,46 @@ import kr.mashup.feedget.ui.register.CreationData;
 
 public class RegisterPointActivity extends BaseActivity<Contract.Presenter> implements Contract.View {
 
-
-    //  단순 포인트 확인 용
-    private int userPoint = 1800;
-
     private ActivityRegisterPointBinding binding;
+    private Intent intent;
+    private TextView tmpPoint;
 
-    private CreationData data;
-
-    private TextView tmp_point;
-
-    @Override
-    protected Contract.Presenter buildPresenter() {
-        return new RegisterPointPresenter(this);
-    }
+//    TODO: 임시 데이터, 추후에 유저 데이터를 받아오면 임시 데이터를 지운다
+    private int userPoint = 1200;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected Contract.Presenter buildPresenter() { return new RegisterPointPresenter(this);}
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register_point);
 
-        init();
-        pointSelecter();
+        presenter.init();
 
     }
 
-    private void init() {
-        binding.textViewRegisterBackButton.setOnClickListener(__ -> {
-            finish();
-        });
+    @Override
+    public void initViews() {
+        toolBarManager();
+        getUserInfo();
+        pointLayoutManager();
+    }
 
-        binding.textViewRegisterSubmitButton.setOnClickListener(__ -> {
+    private void getUserInfo() {
 
-
-            data = (CreationData) getIntent().getSerializableExtra("data");
-
-            String point = binding.EditTextSetPointBar.getText().toString();
-            if (point != "") {
-                float rewardPoint = Float.parseFloat(point);
-                boolean anonymity = binding.switchIsHideNickname.isChecked();
-
-                data.setRewardPoint(rewardPoint);
-                data.setAnonymity(anonymity);
-                if (data.isSubmit()) {
-                    Intent intent = new Intent();
-                    intent.putExtra("data", data);
-                    setResult(RESULT_OK, intent);
-                    finishAlert();
-                }
-            } else {
-                Toast.makeText(this, "포인트 입력해야해!!", Toast.LENGTH_SHORT).show();
-            }
+    }
 
 
-        });
-
-        binding.textViewMyPoint.setText(Integer.toString(userPoint));
-
+    private void pointLayoutManager() {
+        pointBlockSelecter();
         editTextPointChecker();
-    }
-
-    private void finishAlert() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle("게시글 등록 완료!");
-
-        alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-
-            @Override
-
-            public void onClick(DialogInterface dialog, int which) {
-
-                finish();
-            }
-
-        });
-
-        alert.setMessage("피드백이 입력되면 수정, 삭제가 불가능하니 유의하세요.");
-
-        alert.show();
 
     }
 
-
-    private void pointSelecter() {
-
-        for (int i = 0; i < binding.linearLayoutPointBlock.getChildCount(); i++) {
-            ViewGroup childContainer = (ViewGroup) binding.linearLayoutPointBlock.getChildAt(i);
-            for(int j=0;j<childContainer.getChildCount();j++){
-                android.view.View childView = childContainer.getChildAt(j);
-                childView.setOnClickListener(view ->{
-                    setPointResult((TextView) view);
-                });
-            }
-        }
-
-
-        binding.checkBoxPointAllIn.setOnClickListener(__ -> {
-
-            if (binding.checkBoxPointAllIn.isChecked() == true) {
-                setPointBar(userPoint);
-
-            } else {
-                setPointBar(0);
-            }
-
-        });
-
-    }
-
-
-    private void setPointBar(int point) {
-
-        if (userPoint >= point) {
-            String setPoint = Integer.toString(point);
-            binding.EditTextSetPointBar.setText(setPoint);
-        } else {
-            Toast.makeText(this, "보유 포인트 이하만 입력할 수 있습니다", Toast.LENGTH_SHORT).show();
-            binding.EditTextSetPointBar.setText("0");
-        }
-    }
-
-
-    private void setPointResult(TextView view) {
-        if (tmp_point != null) {
-            tmp_point.setBackground(ContextCompat.getDrawable(this, R.drawable.point_button_stroke));
-        }
-        view.setBackground(ContextCompat.getDrawable(this, R.drawable.point_button_stroke_selected));
-        String point = view.getText().toString();
-        setPointBar(Integer.parseInt(point));
-        tmp_point = view;
-    }
-
-    private void editTextPointChecker(){
-        binding.EditTextSetPointBar.addTextChangedListener(new TextWatcher(){
-
+    private void editTextPointChecker() {
+        binding.EditTextSetPointBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -167,31 +73,126 @@ public class RegisterPointActivity extends BaseActivity<Contract.Presenter> impl
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//              현재 값을 완전히 지우면 앱이 죽음 ㅠㅠ
-                if(s.length() != 0) {
+                checkingEditTextPoint(s);
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            private void checkingEditTextPoint(CharSequence s) {
+//              TODO: 현재 값이 0 이하로 지우면 APP이 죽습니다
+                if (s.length() != 0) {
                     int point = Integer.parseInt(s.toString());
                     if (point > userPoint) {
                         Toast.makeText(RegisterPointActivity.this, "보유하신 포인트를 초과하였습니다.", Toast.LENGTH_SHORT).show();
                         binding.EditTextSetPointBar.setText(Integer.toString(userPoint));
                     }
-                }else{
+                } else {
                     binding.EditTextSetPointBar.setText("0");
                 }
-
-            }
-
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (toString() != "0"){
-                    Toast.makeText(RegisterPointActivity.this, "메이데이메이데이", Toast.LENGTH_SHORT).show();
-                    binding.pointUnderBarLine.setBackgroundColor(R.color.dodger_blue);
-                }
-
             }
         });
     }
 
+    private void pointBlockSelecter() {
+        for (int i = 0; i < binding.linearLayoutPointBlock.getChildCount(); i++) {
+            ViewGroup childContainer = (ViewGroup) binding.linearLayoutPointBlock.getChildAt(i);
+            for (int j = 0; j < childContainer.getChildCount(); j++) {
+                android.view.View childView = childContainer.getChildAt(j);
+                childView.setOnClickListener(view -> {
+                    setPointResult((TextView) view);
+                });
+            }
+        }
+    }
+
+    private void setPointResult(TextView view) {
+        if (tmpPoint != null) {
+            tmpPoint.setBackground(ContextCompat.getDrawable(this, R.drawable.point_button_stroke));
+        }
+        view.setBackground(ContextCompat.getDrawable(this, R.drawable.point_button_stroke_selected));
+        String point = view.getText().toString();
+        setPointBar(Integer.parseInt(point));
+        tmpPoint = view;
+    }
+
+    private void setPointBar(int point) {
+        if(userPoint >= point){
+            String setPoint = Integer.toString(point);
+            binding.EditTextSetPointBar.setText(setPoint);
+        }else{
+            Toast.makeText(this, "보유하신 포인트 이하만 입력할 수 있습니다.", Toast.LENGTH_SHORT).show();
+            binding.EditTextSetPointBar.setText("0");
+        }
+    }
+
+    private void toolBarManager() {
+        initToolBar();
+        submitButtonManager();
+    }
+
+    private void submitButtonManager() {
+        binding.textViewRegisterSubmitButton.setOnClickListener(__ -> {
+            boolean isDataReady;
+            isDataReady = validationData();
+            setCreationData(isDataReady);
+        });
+    }
+
+    private boolean validationData() {
+        String point = binding.EditTextSetPointBar.getText().toString();
+
+        if(point != "" ){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+    private void setCreationData(Boolean isDataReady) {
+        if(isDataReady){
+            int rewardPoint = Integer.parseInt(binding.EditTextSetPointBar.getText().toString());
+            boolean anonymity = binding.switchIsHideNickname.isChecked();
+
+            intent = new Intent();
+            intent.putExtra("rewardPoint",rewardPoint);
+            intent.putExtra("anonymity",anonymity);
+            setResult(Activity.RESULT_OK, intent);
+            registerPointActivityFinishAlert();
+
+        }else{
+            Toast.makeText(this, "포인트를 입력해 주세요", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void registerPointActivityFinishAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("게시글 등록 완료");
+
+        alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        alert.setMessage("피드백이 입력되면 수정, 삭제가 불가능하니 유의하세요");
+        alert.show();
+    }
+
+    private void initToolBar() {
+
+        binding.textViewRegisterBackButton.setOnClickListener(__ -> {
+            finish();
+        });
 
 
+
+    }
 }

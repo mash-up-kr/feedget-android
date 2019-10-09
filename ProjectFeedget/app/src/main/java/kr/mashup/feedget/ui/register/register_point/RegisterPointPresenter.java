@@ -17,7 +17,7 @@ public class RegisterPointPresenter implements Contract.Presenter{
     }
 
     @Override
-    public void setOnClickEvent(View view) {
-        String viewId = view.getResources().getResourceEntryName(view.getId());
+    public void init() {
+        view.initViews();
     }
 }

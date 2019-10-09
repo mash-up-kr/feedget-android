@@ -6,7 +6,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Completable;
+import io.reactivex.CompletableEmitter;
+import io.reactivex.CompletableOnSubscribe;
 import io.reactivex.Emitter;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
@@ -14,7 +18,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import kr.mashup.feedget.model.dummy.Creation;
 import kr.mashup.feedget.model.dummy.Feedback;
+import kr.mashup.feedget.model.dummy.Response;
 import kr.mashup.feedget.model.dummy.User;
+import kr.mashup.feedget.ui.register.CreationData;
+import kr.mashup.feedget.ui.register.ImageData;
 
 //TODO : API명세가 아직 불완전해서 단순히 함수로만 구현해놨으나, 추후엔 ApiService를 구현해서 사용하면 좋을것같습니다.
 public class DummyApi /*implements ApiService*/ {
@@ -39,6 +46,8 @@ public class DummyApi /*implements ApiService*/ {
                     Creation dummyCreation = new Creation();
                     dummyCreation.title = "과제용 일러스트레이션 크리틱좀 부탁드립니다.";
                     dummyCreation.description = "과제용 카페 박람회 포스터 리디자인 중 사용될 일러고 동화적인 느낌으로 진행했어요. 폰트나 구도가 확신이 안 가는데 피드백 부탁드립니다.";
+                    dummyCreation.category = "회화";
+                    dummyCreation.anonymity = false;
                     dummyCreation.dueDate = new Date(System.currentTimeMillis());
                     dummyCreation.createdDate = new Date(System.currentTimeMillis());
                     dummyCreation.imageUrlList = new ArrayList<>();
@@ -82,6 +91,30 @@ public class DummyApi /*implements ApiService*/ {
         ).delay(DELAY_MILLISECONDS_DUMMY_NETWORK_LATENCY, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+//    Creation
+    public Single<Response> sendCreationData(CreationData creationData){
+        return Single.create(
+                (SingleOnSubscribe<Response>) emitter -> {
+                    Response dummyCreationResponse = new Response();
+                    dummyCreationResponse.apiName= "/creation";
+                    dummyCreationResponse.Response= 200;
+                    dummyCreationResponse.apiName="3";
+                    emitter.onSuccess(dummyCreationResponse);
+                }
+        ).delay(DELAY_MILLISECONDS_DUMMY_NETWORK_LATENCY, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+    }
+
+
+//   Image
+    public Completable sendImageData(ImageData imageData){
+        return Completable.create(
+                emitter -> emitter.onComplete()
+        ).delay(1000 * 2, TimeUnit.MILLISECONDS);
     }
 
 }

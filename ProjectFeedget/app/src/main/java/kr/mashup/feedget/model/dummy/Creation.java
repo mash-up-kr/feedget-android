@@ -16,6 +16,8 @@ public class Creation implements Serializable {
     public Date dueDate;
     public ArrayList<String> imageUrlList;
     public ArrayList<Feedback> feedbackList;
+    public String category;
+    public boolean anonymity;
 
     public Creation() {
 
